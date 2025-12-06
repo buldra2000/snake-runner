@@ -1,7 +1,5 @@
 package snakerunner.graphics;
 
-import java.awt.Component;
-
 import javax.swing.Box;
 import javax.swing.JButton;
 
@@ -21,15 +19,14 @@ public class MenuPanel extends BasePanel {
         start = new JButton(START);
         option = new JButton(OPTION);
         exit = new JButton(EXIT);
-
-        createTitle(LABEL);
         
-        start.setAlignmentX(Component.CENTER_ALIGNMENT);
-        option.setAlignmentX(Component.CENTER_ALIGNMENT);
-        exit.setAlignmentX(Component.CENTER_ALIGNMENT);
+        styleButton(start);
+        styleButton(option);
+        styleButton(exit);
 
+        add(Box.createVerticalStrut(50));
         add(createTitle(LABEL));
-        add(Box.createVerticalGlue());
+        add(Box.createVerticalStrut(100));
         add(start);
         add(option);
         add(exit);

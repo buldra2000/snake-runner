@@ -1,7 +1,6 @@
 package snakerunner.graphics;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
@@ -18,7 +17,6 @@ public class MainFrame extends JFrame {
         setLayout(new BorderLayout());
         add(optionPanel, BorderLayout.CENTER);
         setDimensionFrame();
-        setBackground(Color.GREEN);
     }
 
     private void setDimensionFrame(){

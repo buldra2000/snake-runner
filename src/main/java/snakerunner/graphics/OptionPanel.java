@@ -30,21 +30,22 @@ public class OptionPanel extends BasePanel {
         checkbox = new JCheckBox();
         label = new JLabel(SOUND);
 
-        apply.setAlignmentX(Component.CENTER_ALIGNMENT);
-        back.setAlignmentX(Component.CENTER_ALIGNMENT);
+        styleButton(apply);
+        styleButton(back);
         
         soundPanel.setLayout(new BoxLayout(soundPanel, BoxLayout.X_AXIS));
         soundPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        soundPanel.setOpaque(false);
         label.setAlignmentX(Component.CENTER_ALIGNMENT);
         checkbox.setAlignmentX(Component.CENTER_ALIGNMENT);
 
         soundPanel.add(label);
         soundPanel.add(checkbox);
 
-        add(add(createTitle(OPTION)));
-        add(Box.createVerticalGlue());
-        add(label);
-        add(checkbox);
+        add(Box.createVerticalStrut(50));
+        add(createTitle(OPTION));
+        add(Box.createVerticalStrut(100));
+        add(soundPanel);
         add(Box.createVerticalGlue());
         add(apply);
         add(back);

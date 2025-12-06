@@ -5,15 +5,17 @@ import java.awt.Component;
 import java.awt.Font;
 
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-//Tutti i pannelli, invece di estendere JPanel, estendono BasePanel
-//In questo modo definisco delle caratteristiche comuni per i pannelli
-//Ricordati di aggiungere il background, i font e tutte le cose che possono avere in comune.
+//All panels, instead of extending JPanel, extend BasePanel
+//In this way I define common characteristics for the panels
+//Remember to add the background, fonts, and anything else they might have in common.
 public abstract class BasePanel extends JPanel {
-
+    
     protected final Color defaultBackground = new Color(100,238,100);
+    protected final Color brown = new Color(139, 69, 19);
     protected final Font arial = new Font("Arial", Font.BOLD, 32);
 
     public BasePanel(){
@@ -22,11 +24,19 @@ public abstract class BasePanel extends JPanel {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
     }
 
+    //Create the title of the panels
     protected JLabel createTitle(String text){
         JLabel title = new JLabel(text);
         title.setFont(arial);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         return title;
+    }
+
+    protected JButton styleButton(JButton button){
+        button.setFocusPainted(false);
+        button.setBorderPainted(true);
+        button.setAlignmentX(Component.CENTER_ALIGNMENT);
+        return button;
     }
     
 }
