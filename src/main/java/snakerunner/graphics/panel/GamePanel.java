@@ -6,12 +6,16 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import snakerunner.graphics.MainFrame;
 import snakerunner.graphics.impl.BasePanelImpl;
 
 public class GamePanel extends BasePanelImpl {
 
     private static final String PAUSE = "Pause";
     private static final String RESTART = "Restart";
+    private static final String BACK = "Back to Menu";
+
+    private MainFrame mainFrame;
 
     private final JPanel nPanel;
     private final JPanel sPanel;
@@ -20,12 +24,14 @@ public class GamePanel extends BasePanelImpl {
     private final JPanel wPanel;
     private final JButton pause;
     private final JButton restart;
+    private final JButton back;
     private final JLabel timer;
     private final JLabel life;
     private final JLabel score;
 
-    public GamePanel(){
+    public GamePanel(MainFrame mainFrame){
         super();
+        this.mainFrame = mainFrame;
         nPanel = new JPanel();
         sPanel = new JPanel();
         gameBoardPanel = new GameBoardPanel();
@@ -39,6 +45,7 @@ public class GamePanel extends BasePanelImpl {
 
         pause = createButton(PAUSE);
         restart = createButton(RESTART);
+        back = createButton(BACK);
 
         nPanel.setOpaque(false);
         sPanel.setOpaque(false);
@@ -56,8 +63,9 @@ public class GamePanel extends BasePanelImpl {
         ePanel.add(restart);
         wPanel.add(life);
         sPanel.add(score);
+        sPanel.add(back);
 
-        addActionListeners();
+        this.addActionListeners();
     }
 
     public JButton getPause() {
@@ -68,14 +76,18 @@ public class GamePanel extends BasePanelImpl {
         return restart;
     }
 
-    /*TODO */
-    public void addActionListeners(){
-        getPause().addActionListener(null); // e ->
-        getRestart().addActionListener(null); // e ->
+    private JButton getBacktoMenu(){
+        return back;
     }
 
     @Override
     public void setLayoutPanel() {
         setLayout(new BorderLayout());
+    }
+
+    public void addActionListeners(){
+        getPause().addActionListener(null); //TODO
+        getRestart().addActionListener(null); //TODO
+        getBacktoMenu().addActionListener(e -> mainFrame.showMenu());
     }
 }

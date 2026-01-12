@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import snakerunner.graphics.panel.BasePanel;
 
-//TODO Implementare un interfaccia sopra BasePanel!!!!!!!!
+//Factory Pattern
 
 //All panels, instead of extending JPanel, extend BasePanel
 //In this way I define common characteristics for the panels
@@ -37,10 +37,6 @@ public abstract class BasePanelImpl extends JPanel implements BasePanel {
 
     @Override
     public abstract void setLayoutPanel();
-
-    //Add Listener to button
-    @Override
-    public abstract void addActionListeners();
 
     //Create the title of the panels
     protected JLabel createTitle(String text){

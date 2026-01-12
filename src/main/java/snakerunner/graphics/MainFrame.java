@@ -2,9 +2,15 @@ package snakerunner.graphics;
 
 public interface MainFrame {
 
+    public void display();
+    
     //Set automatically the dimension of the MainFrame
     public void setDimensionFrame();
 
-    //Show the frame
-    public void display();
+    public void showMenu();
+
+    public void showGame();
+
+    public void showOption();
+
 }

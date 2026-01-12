@@ -9,6 +9,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import snakerunner.graphics.MainFrame;
 import snakerunner.graphics.impl.BasePanelImpl;
 
 public class OptionPanel extends BasePanelImpl {
@@ -17,13 +18,16 @@ public class OptionPanel extends BasePanelImpl {
     private static final String BACK = "Back";
     private static final String SOUND = "Sound On / Off";
 
+    private MainFrame mainFrame;
+
     private final JButton apply;
     private final JButton back;
     private final JCheckBox checkbox;
     private final JLabel label;
 
-    public OptionPanel(){
+    public OptionPanel(MainFrame mainFrame){
         super();
+        this.mainFrame = mainFrame;
         checkbox = new JCheckBox();
         label = new JLabel(SOUND);
 
@@ -35,7 +39,7 @@ public class OptionPanel extends BasePanelImpl {
         add(Box.createVerticalGlue());
         apply = createButton(APPLY);
         back = createButton(BACK);
-        addActionListeners();
+        this.addActionListeners();
     }
 
     private JPanel setSoundPanel(){
@@ -68,7 +72,7 @@ public class OptionPanel extends BasePanelImpl {
 
     public void addActionListeners(){
         getApply().addActionListener(null); //TODO
-        getBack().addActionListener(null); //TODO
+        getBack().addActionListener(e -> mainFrame.showMenu());
         getCheckbox().addActionListener(null); //TODO
     }
 }
