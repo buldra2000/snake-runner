@@ -11,9 +11,9 @@ public class GrowEffect  implements FoodEffect{
     }
 
     @Override
-    public void apply(GameModel model, Snake snake) {
-        for (int i = 0; i < segments; i++) {
-            snake.grow();
-        }
+    public void apply(Snake snake) {
+        //for (int i = 0; i < segments; i++) {
+        //    snake.grow();
+        //}
     }
 }
