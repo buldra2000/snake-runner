@@ -7,4 +7,10 @@ public interface Controller {
 
     public void init();
 
+    /**
+     * Starts the game loop.
+     */
+    public void start();
+
+    public void update();
 }
