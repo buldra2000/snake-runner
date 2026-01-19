@@ -15,6 +15,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             MainFrame mainFrame = new MainFrameImpl();
             GameModel gameModel = new GameModelImpl();
+            
             Controller controller = new ControllerImpl(mainFrame, gameModel);
             controller.init();
         });

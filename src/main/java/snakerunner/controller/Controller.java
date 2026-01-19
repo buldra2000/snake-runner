@@ -12,5 +12,5 @@ public interface Controller {
      */
     public void start();
 
-    public void update();
+    public void updateGame();
 }
