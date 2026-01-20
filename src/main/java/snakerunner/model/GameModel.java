@@ -17,4 +17,6 @@ public interface GameModel {
     public void loadLevel(Level level);
 
     public void resetLevel();
+
+    public void nextLevel();
 }
