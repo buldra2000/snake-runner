@@ -1,6 +1,7 @@
 package snakerunner.model.impl;
 
 import javax.swing.Timer;
+
 import snakerunner.model.GameModel;
 import snakerunner.model.Level;
 import snakerunner.model.LevelManager;
@@ -85,8 +86,5 @@ public class GameModelImpl implements GameModel {
     @Override
     public void stopTimer() {
         timer.stop();
-    }
-
-    
-    
+    }  
 }

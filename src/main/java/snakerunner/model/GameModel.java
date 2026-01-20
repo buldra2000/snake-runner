@@ -20,4 +20,8 @@ public interface GameModel {
     public int getTimeLeft();
 
     public boolean isGameOver();
+
+    public void loadLevel(Level level);
+
+    public void resetLevel();
 }
