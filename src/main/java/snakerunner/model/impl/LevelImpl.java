@@ -1,6 +1,7 @@
 package snakerunner.model.impl;
 
 import java.util.Set;
+
 import snakerunner.commons.Point2D;
 import snakerunner.model.Grid;
 import snakerunner.model.Level;
