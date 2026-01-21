@@ -1,12 +1,16 @@
 package snakerunner.graphics.panel;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import snakerunner.graphics.MainFrame;
+import snakerunner.graphics.hud.LevelView;
+import snakerunner.graphics.hud.LifeView;
+import snakerunner.graphics.hud.ScoreView;
 import snakerunner.graphics.hud.TimerView;
 import snakerunner.graphics.impl.BasePanelImpl;
 
@@ -17,6 +21,10 @@ public class GamePanel extends BasePanelImpl {
     private static final String BACK = "Back to Menu";
 
     private TimerView timerView;
+    private ScoreView scoreView;
+    private LevelView levelView;
+    private LifeView lifeView;
+
     private MainFrame mainFrame;
 
     private final JPanel nPanel;
@@ -27,9 +35,6 @@ public class GamePanel extends BasePanelImpl {
     private final JButton pause;
     private final JButton restart;
     private final JButton back;
-    private final JLabel life;
-    private final JLabel score;
-    private final JLabel level;
 
     public GamePanel(MainFrame mainFrame){
         super();
@@ -41,10 +46,9 @@ public class GamePanel extends BasePanelImpl {
         wPanel = new JPanel();
 
         timerView = new TimerView();
-
-        life = createLabel("Lives remaining: 3");
-        level = createLabel("Level 1");
-        score = createLabel("Score : 0");
+        scoreView = new ScoreView();
+        levelView = new LevelView();
+        lifeView = new LifeView();
 
         setLayoutPanel();
 
@@ -58,18 +62,25 @@ public class GamePanel extends BasePanelImpl {
         wPanel.setOpaque(false);
 
         add(nPanel, BorderLayout.NORTH);
-        add(sPanel, BorderLayout.SOUTH);
         add(gameBoardPanel, BorderLayout.CENTER);
         add(ePanel, BorderLayout.EAST);
         add(wPanel, BorderLayout.WEST);
+        add(sPanel, BorderLayout.SOUTH);
 
         nPanel.add(timerView);
-        nPanel.add(level);
+        nPanel.add(levelView);
         ePanel.add(pause);
         ePanel.add(restart);
-        wPanel.add(life);
-        sPanel.add(score);
+        wPanel.add(lifeView);
+        
+        sPanel.setLayout(new BoxLayout(sPanel, BoxLayout.X_AXIS));
+
+        scoreView.setAlignmentX(Component.RIGHT_ALIGNMENT);
+        back.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        sPanel.add(scoreView);
         sPanel.add(back);
+
 
         this.addActionListeners();
     }
