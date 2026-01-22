@@ -28,8 +28,14 @@ public class GameModelImpl implements GameModel {
 
     @Override
     public boolean isGameOver() {
-        // WIN OR DEATH CONDITION
-        return false;
+        /*
+        if (level.IsBlocked(snake.getHead())) {
+            return true;
+        } else {
+            return false;
+        }
+        */
+       return false;
     }
 
     @Override
