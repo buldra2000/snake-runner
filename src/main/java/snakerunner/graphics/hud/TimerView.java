@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /*TimerView is a HUD component and is used to show the remaining game time in GamePanel*/
-public class TimerView extends JPanel {
+public class TimerView extends JLabel {
     
     private static final int WIDTH = 60;
     private static final int HEIGHT = 30;

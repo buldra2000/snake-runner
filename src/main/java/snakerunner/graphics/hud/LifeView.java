@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /*LifeView is a HUD component and is used to show the remaining life in GamePanel*/
-public class LifeView extends JPanel{
+public class LifeView extends JLabel{
 
     private static final String LIFE_TEXT = "Life : %1d";
     private static final int X = 5;

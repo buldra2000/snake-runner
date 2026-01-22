@@ -4,10 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /*ScoreView is a HUD component and is used to show score in GamePanel*/
-public class ScoreView extends JPanel{
+public class ScoreView extends JLabel{
 
     private static final int WIDTH = 60;
     private static final int HEIGHT = 30;
