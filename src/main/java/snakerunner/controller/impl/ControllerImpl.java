@@ -4,6 +4,7 @@ import snakerunner.controller.Controller;
 import snakerunner.core.StateGame;
 import snakerunner.graphics.MainFrame;
 import snakerunner.model.GameModel;
+import snakerunner.model.LevelData;
 
 public class ControllerImpl implements Controller {
     private StateGame state;
@@ -74,5 +75,10 @@ public class ControllerImpl implements Controller {
     @Override
     public void setSoundEnable(boolean isEnable){
         //TODO
+    }
+
+    @Override
+    public void loadLevel(LevelData data) {
+        gameModel.loadLevel(data);
     }
 }
