@@ -43,9 +43,5 @@ public class AudioPlayer {
             System.out.println("Error playing sound.");
             e.printStackTrace();
         }
-
     }
-
-
-
 }

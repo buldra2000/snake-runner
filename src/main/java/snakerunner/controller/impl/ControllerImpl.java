@@ -68,6 +68,6 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void setSoundEnable(boolean isEnable){
-        //TODO
+        System.out.println("Controller: setSoundEnable()");
     }
 }

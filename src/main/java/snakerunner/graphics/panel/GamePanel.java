@@ -45,6 +45,7 @@ public class GamePanel extends BasePanelImpl {
         ePanel = new JPanel();
         wPanel = new JPanel();
 
+        //HUD
         timerView = new TimerView();
         scoreView = new ScoreView();
         levelView = new LevelView();
