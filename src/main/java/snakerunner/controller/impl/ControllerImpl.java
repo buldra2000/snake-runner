@@ -57,6 +57,7 @@ public class ControllerImpl implements Controller {
 
         if (gameModel.isGameOver()) {
             System.out.println("Controller: Game Over!");
+            mainFrame.stopGameLoop();
             state = StateGame.GAME_OVER;
             mainFrame.showMenu();
         }
