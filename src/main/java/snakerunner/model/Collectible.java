@@ -6,4 +6,6 @@ public interface Collectible {
     public void consume(Snake snake);
 
     public Point2D<Integer, Integer> getPosition();
+
+    CollectibleType getType();
 }
