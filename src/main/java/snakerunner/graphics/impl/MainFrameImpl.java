@@ -93,7 +93,7 @@ public class MainFrameImpl extends JFrame implements MainFrame {
     @Override
     public void startGameLoop(Runnable onTick) {
         timer = new Timer(200, e -> onTick.run()); 
-        gamePanel.updateTimer(getTimeLeft());
+        //gamePanel.updateTimer(/*getTimeLeft()*/);
         timer.start();
     }
 
