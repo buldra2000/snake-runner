@@ -21,4 +21,5 @@ public interface Controller {
     public void updateGame();
 
     public void setSoundEnable(boolean isEnable);
+
 }
