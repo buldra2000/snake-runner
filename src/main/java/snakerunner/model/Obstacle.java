@@ -19,7 +19,7 @@ public class Obstacle extends Entity{
         this.height=height;
     }
  
-    //Getter Widht
+    //Getter Width
     public int getWidth(){
         return width;
     }
@@ -29,7 +29,7 @@ public class Obstacle extends Entity{
         return height;
     }
 
-//We check if targetX is between x and x + width and targetY is between y and y + height
+//We check if targetX is between x and x + width and targetY is between y and y + height (the area)
     public boolean isHit(int targetX, int targetY){
      return targetX>= this.x && targetX< this.x + this.width && //Checking if x is between the beginning and the end of the obstacle
             targetY>= this.y && targetY< this.y + this.height;//Checking if the y is between the beginning and the end of the obstacle
@@ -37,9 +37,10 @@ public class Obstacle extends Entity{
 
     }
 
+    //We use this method to get the occupied positions by transforming them into a set
     public Set<Point2D<Integer, Integer>> getOccupiedPositions(){
         Set<Point2D<Integer, Integer>> positions = new HashSet<>();
-        for(int i = 0; i< width; i++){ //We check every cell
+        for(int i = 0; i< width; i++){ //iterates through width and then height
             for (int j= 0; j< height; j++){
                 //adds a new "point" to the set for every cell that's occupied
                 positions.add(new Point2D<Integer,Integer>(x + i, y+j));
