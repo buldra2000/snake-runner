@@ -99,21 +99,21 @@ public class GamePanel extends BasePanelImpl {
 
     //TimerView
     public void updateTimer(int timeLeft){
-        timerView.setTimeLeft(timeLeft);
+        timerView.setValue(timeLeft);
     }
 
     //LevelView
     public void updateLevel(int level){
-        levelView.setLevel(level);
+        levelView.setValue(level);
     }
 
     //ScoreView
     public void updateScore(int score){
-        scoreView.setScore(score);
+        scoreView.setValue(score);
     }
 
     //LifeView
     public void updateLife(int life){
-        lifeView.setLife(life);
+        lifeView.setValue(life);
     }
 }

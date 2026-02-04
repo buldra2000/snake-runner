@@ -8,7 +8,7 @@ public interface GameModel {
 
     public void loadLevel(Level level);
 
-    public Level getLevel();
+    public int getLevel();
 
     public void resetLevel();
 

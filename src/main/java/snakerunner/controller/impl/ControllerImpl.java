@@ -45,6 +45,13 @@ public class ControllerImpl implements Controller {
         mainFrame.showGame();
         // Implementation to start the game loop
         state = StateGame.RUNNING;
+
+        //Set HUD
+        gamePanel.updateTimer(gameModel.getTimeLeft());
+        gamePanel.updateLevel(gameModel.getLevel());
+        //gamePanel.updateLife(gameModel.getLife());
+        //gamePanel.updateScore(gameModel.getScore())xw
+
         gameModel.startTimer();
         System.out.println("StateGame.RUNNING , StartTimer");
     }
@@ -73,6 +80,17 @@ public class ControllerImpl implements Controller {
 
         //un tick di gioco
         gameModel.update();
+
+        int timeLeft = gameModel.getTimeLeft();
+        int level = gameModel.getLevel();
+        //int score = gameModel.getScore()
+        //int life = gameModel.getLives()
+
+        //Update View
+        gamePanel.updateTimer(timeLeft);
+        gamePanel.updateScore(0);
+        gamePanel.updateLevel(level);
+        gamePanel.updateLife(0);
 
         if (gameModel.isGameOver()) {
             System.out.println("Controller: Game Over!");

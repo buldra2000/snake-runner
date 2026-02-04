@@ -1,9 +1,9 @@
 package snakerunner.model.impl;
 
 import javax.swing.Timer;
+
 import snakerunner.model.GameModel;
 import snakerunner.model.Level;
-import snakerunner.model.LevelManager;
 import snakerunner.model.LevelManager;
 import snakerunner.model.Snake;
 
@@ -11,6 +11,7 @@ public class GameModelImpl implements GameModel {
 
     private static final int START_TIME = 180;
     private static final int DELAY = 1000;
+
     private int timeLeft;
     private Timer timer;
     private Level currentLevel;
@@ -18,8 +19,11 @@ public class GameModelImpl implements GameModel {
     private LevelManager levelManager;
 
     public GameModelImpl() {
-        timer = new Timer(DELAY, e -> updateTimer());
         timeLeft = START_TIME;
+        timer = new Timer(DELAY, e -> {
+            updateTimer();
+            System.out.println(timeLeft);
+        });
     }
 
     private void updateTimer(){
@@ -99,9 +103,8 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public Level getLevel() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getLevel'");
+    public int getLevel() {
+        return currentLevel != null ? 2 : 1;
     }
     
 }
