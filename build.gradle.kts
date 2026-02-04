@@ -7,7 +7,6 @@ repositories {
     mavenCentral()
 }
 
-<<<<<<< HEAD
 dependencies {
     //JUnit API
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.3")
@@ -23,10 +22,3 @@ application {
 tasks.test {
     useJUnitPlatform()
 }
-
-=======
-application {
-    val main: String? by project
-    mainClass.set(main ?: "snakerunner.core.Main")
-}
->>>>>>> ab5f6f4 (Added build.gradle.kts & setting.gradle.kts)

@@ -70,7 +70,7 @@ public class GamePanel extends BasePanelImpl {
         nPanel.add(timerView);
         nPanel.add(levelView);
         ePanel.add(pause);
-        ePanel.add(restart);
+        ePanel.add(resume);
         wPanel.add(lifeView);
         
         sPanel.setLayout(new BoxLayout(sPanel, BoxLayout.X_AXIS));
@@ -106,7 +106,7 @@ public class GamePanel extends BasePanelImpl {
     public void addActionListeners(){
         System.out.println("GamePanel : Adding action listeners to GamePanel buttons");
         getPause().addActionListener(e -> mainFrame.pause());
-        getRestart().addActionListener(e -> {});
+        getResume().addActionListener(e -> {});
         getBacktoMenu().addActionListener(e -> mainFrame.showMenu());
     }
 
