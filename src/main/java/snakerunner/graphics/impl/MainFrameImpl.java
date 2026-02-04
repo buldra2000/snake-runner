@@ -3,9 +3,6 @@ package snakerunner.graphics.impl;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-import java.net.URL;
-
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 
@@ -20,36 +17,32 @@ public class MainFrameImpl extends JFrame implements MainFrame {
     
     private static final String TITLE = "Snake Runner";
     private static final double PROPORTION = 0.5;
-
     private Controller controller;
     private Timer timer;
+    private int timeLeft;
     private MenuPanel menuPanel;
     private GamePanel gamePanel;
     private OptionPanel optionPanel;
 
     public MainFrameImpl() {
         super(TITLE);
-        setIcon();
+        //setIcon();
         menuPanel = PanelFactory.createMenuPanel(this);
         gamePanel = PanelFactory.createGamePanel(this);
         optionPanel = PanelFactory.createOptionPanel(this);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setDimensionFrame();
+        //timer = new Timer(DELAY, e -> updateTimer());
+        //timeLeft = START_TIME;
     }
+
 
     @Override
     public void display() {
         setVisible(true);
     }
 
-    private void setIcon(){
-        URL iconURL = getClass().getResource("/icon.png");
-        System.out.println("Icon URL: " + iconURL);
-        ImageIcon icon = new ImageIcon(iconURL);
-        setIconImage(icon.getImage());
-    }
-
-    public void setDimensionFrame(){
+    private void setDimensionFrame(){
         Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int)(screensize.width * PROPORTION);
         int height = (int)(screensize.height * PROPORTION);
@@ -70,6 +63,12 @@ public class MainFrameImpl extends JFrame implements MainFrame {
         repaint();
 
         controller.start();
+        System.out.println("Controller.start()");
+    }
+
+    @Override
+    public void pause(){
+        controller.pause();
     }
 
     @Override
@@ -85,22 +84,23 @@ public class MainFrameImpl extends JFrame implements MainFrame {
     }
 
     @Override
-    public void startGameLoop() {
-        //Game Loop 
-        timer = new Timer(200, e -> {
-            controller.updateGame(); 
-            //repaint();
 
-            gamePanel.updateTimer(controller.getModel().getTimeLeft());
+    public void startGameLoop(Runnable onTick) {
+        timer = new Timer(200, e -> {onTick.run(); 
+        
+            //gamePanel.updateTimer(getTimeLeft());
 
-            //Getting obstacles
-            java.util.Set<snakerunner.commons.Point2D<Integer, Integer>> obs= controller.getModel().getObstacles();
-            
-            gamePanel.updateObstacles(obs);
+   //Error checking (we check if controller and model are ≠ null. This is done to avoid crashing the game)
+    if (controller !=null &&controller.getModel() != null) {
 
-           repaint();
+        java.util.Set<snakerunner.commons.Point2D<Integer, Integer>> obs= controller.getModel().getObstacles();//Getting obstacles
+           
+    gamePanel.updateObstacles(obs);//Passing obstacles to draw them
+    }
 
-        });
+    repaint(); 
+});
+
         timer.start();
     }
 
@@ -113,16 +113,7 @@ public class MainFrameImpl extends JFrame implements MainFrame {
 
     @Override
     public void setSoundEnabled(boolean isEnable) {
-        controller.setSoundEnable(isEnable);
-    }
-
-    @Override
-    public void pause() {
-        controller.pause();
-    }
-
-    @Override
-    public void resume(){
-        controller.resume();
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setSoundEnabled'");
     }
 }

@@ -8,14 +8,12 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import snakerunner.model.Position;
-
 public class GameBoardPanel extends JPanel {
 
     private static final int CELL = 10;
 
     private Point apple;
-    private List<Position> snakeBody = new ArrayList<>();
+    private List<Point> snakeBody = new ArrayList<>();
 
 
     public GameBoardPanel(){
@@ -46,8 +44,8 @@ public class GameBoardPanel extends JPanel {
         }
 
         g.setColor(Color.GREEN);
-        for(Position p : snakeBody){
-            g.fillRect(p.getX() * CELL, p.getY() * CELL, CELL, CELL);
+        for(Point p : snakeBody){
+            g.fillRect(p.x * CELL, p.y * CELL, CELL, CELL);
         }
 
         if(apple != null){
@@ -60,7 +58,7 @@ public class GameBoardPanel extends JPanel {
         this.apple = apple;
     }
 
-    public void setSnakeBody(List<Position> snakeBody) {
+    public void setSnakeBody(java.util.List<Point> snakeBody) {
         this.snakeBody = snakeBody;
     }
 }

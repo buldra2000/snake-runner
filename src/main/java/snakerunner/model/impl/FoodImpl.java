@@ -1,18 +1,29 @@
 package snakerunner.model.impl;
 
-import snakerunner.model.Food;
-import snakerunner.model.FoodEffect;
+import snakerunner.commons.Point2D;
+import snakerunner.model.Collectible;
+import snakerunner.model.CollectibleType;
 import snakerunner.model.Snake;
 
-public class FoodImpl implements Food{
-    private FoodEffect effect;
+public class FoodImpl implements Collectible{
+    private final Point2D<Integer, Integer> position;
 
-    public FoodImpl(FoodEffect effect) {
-        this.effect = effect;
+    public FoodImpl(Point2D<Integer, Integer> position){
+        this.position = position;
     }
 
     @Override
     public void consume(Snake snake) {
-        effect.apply(snake);
+        // Implement consumption logic here
+    }
+
+    @Override
+    public Point2D<Integer, Integer> getPosition() {
+        return position;
+    }
+
+    @Override
+    public CollectibleType getType() {
+        return CollectibleType.FOOD;
     }
 }

@@ -1,25 +1,29 @@
 package snakerunner.model;
 
+import java.util.List;
+
 public interface GameModel {
     
     public void update();
 
     public void checkCollisions();
 
-    public void startTimer();
-
-    public void stopTimer();
-
-    public int getTimeLeft();
-
     public boolean isGameOver();
 
-    public void loadLevel(Level level);
+    public void loadLevel(LevelData data);
 
     public void resetLevel();
 
-    public void nextLevel();
+    public Snake getSnake();
 
-    //Added
+    //GETTER PER LA VIEW / DEBUG
+    public List<Collectible> getCollectibles();
+
+    public Level getLevel();
+
+    
+    //public Level nextLevel();
+
+    //Adding obstacles
     public java.util.Set<snakerunner.commons.Point2D<Integer,Integer>> getObstacles();
 }

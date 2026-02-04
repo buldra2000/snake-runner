@@ -1,5 +1,6 @@
 package snakerunner.controller;
 
+import snakerunner.graphics.MainFrame;
 import snakerunner.model.GameModel;
 
 //LinkedBlockingQueue -> thread safe
@@ -16,11 +17,13 @@ public interface Controller {
 
     public void pause();
 
-    public void resume();
-
     public GameModel getModel();
+
+    public MainFrame getView();
 
     public void updateGame();
 
     public void setSoundEnable(boolean isEnable);
+
+    public void loadLevelFromFile(String filepath);
 }
