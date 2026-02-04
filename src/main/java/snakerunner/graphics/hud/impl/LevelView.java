@@ -20,13 +20,10 @@ public class LevelView extends BaseView{
         super(WIDTH, HEIGHT);
     }
 
-    public void setLevel(int level){
-        this.level = level;
+    @Override
+    public void setValue(int value){
+        this.level = value;
         repaint();
-    }
-
-    public int getLevel() {
-        return level;
     }
 
     @Override

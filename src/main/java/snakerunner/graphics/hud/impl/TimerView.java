@@ -21,13 +21,10 @@ public class TimerView extends BaseView {
         super(WIDTH, HEIGHT);
     }
 
-    public void setTimeLeft(int timeLeft){
-        this.timeLeft = timeLeft;
+    @Override
+    public void setValue(int value){
+        this.timeLeft = value;
         repaint();
-    }
-
-    public int getTimeLeft() {
-        return timeLeft;
     }
 
     @Override
