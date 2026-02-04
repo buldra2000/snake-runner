@@ -3,12 +3,8 @@
 [Obstacles]
 5,3
 5,4
-5,5
-10,10
-11,10
-12,10
 
-[Food]
-2,2
-8,6
-14,4
+[Collectibles]
+2,2,FOOD
+4,1,CLOCK
+6,6,KEY
