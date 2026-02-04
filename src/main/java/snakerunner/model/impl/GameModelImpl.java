@@ -18,7 +18,6 @@ public class GameModelImpl implements GameModel {
     private Level currentLevel;
     private Snake snake;
     private List<Collectible> collectibles;
-
     //private LevelManager levelManager;
 
     public GameModelImpl() {
