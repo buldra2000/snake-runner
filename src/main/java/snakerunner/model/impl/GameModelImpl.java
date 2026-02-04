@@ -1,12 +1,10 @@
 package snakerunner.model.impl;
 
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 import snakerunner.commons.Point2D;
 import snakerunner.model.Collectible;
-import snakerunner.model.FoodEffect;
 import snakerunner.model.GameModel;
 import snakerunner.model.Level;
 import snakerunner.model.LevelData;
@@ -14,12 +12,9 @@ import snakerunner.model.Snake;
 
 public class GameModelImpl implements GameModel {
 
-    //Prova
-    private static final FoodEffect FoodEffect = null;
-
     private Level currentLevel;
     private Snake snake;
-    private List<Collectible> foods;
+    private List<Collectible> collectibles;
     //private LevelManager levelManager;
 
     public GameModelImpl() {
@@ -55,11 +50,8 @@ public class GameModelImpl implements GameModel {
     @Override
     public void loadLevel(LevelData data) {
         this.currentLevel = new LevelImpl(data);
-        System.out.println("Spawn Snake...");
-        spawnSnake();
-        System.out.println("Spawn Foods...");
-        spawnFoods(data.getFoodPositions());
-
+        this.collectibles = data.getCollectibles();
+        //this.snake = new SnakeImpl(new Point2D<>(5,5), 3);
         debugPrintLevel();
     }
 
@@ -75,25 +67,13 @@ public class GameModelImpl implements GameModel {
     }
 
     @Override
-    public List<Collectible> getFoods() {
-        return Collections.unmodifiableList(foods);    
+    public List<Collectible> getCollectibles() {
+        return Collections.unmodifiableList(collectibles);    
     }
 
     @Override
     public Level getLevel() {
         return this.currentLevel;
-    }
-
-    private void spawnSnake() {
-        //this.snake = new SnakeImpl();
-    }
-
-    private void spawnFoods(List<Point2D<Integer, Integer>> foodPositions) {
-        foods = new LinkedList<>();
-        
-        for (Point2D<Integer, Integer> p : foodPositions) {
-            foods.add((Collectible) new FoodImpl(FoodEffect, p));
-        }
     }
 
     private void debugPrintLevel() {
@@ -104,9 +84,9 @@ public class GameModelImpl implements GameModel {
             System.out.println("  wall at " + p);
         }
 
-        System.out.println("Fruits:");
-        for (Collectible f : foods) {
-            System.out.println("  fruit at " + f.getPosition());
+        System.out.println("Collectibles:");
+        for (Collectible c : collectibles) {
+            System.out.println("  collectible at " + c.getPosition());
         }
 
         System.out.println("===================");
