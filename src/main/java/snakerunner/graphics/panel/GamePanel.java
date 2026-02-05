@@ -91,8 +91,8 @@ public class GamePanel extends BasePanelImpl {
     @Override
     public void addActionListeners(){
         pause.addActionListener(e -> controller.pause());
-        resume.addActionListener(e -> controller.resume());
-        back.addActionListener(e -> controller.onBackToMenu());
+        resume.addActionListener(e -> {});
+        back.addActionListener(e -> controller.onBackMenu());
     }
 
     public void updateTimer(final int timeLeft){

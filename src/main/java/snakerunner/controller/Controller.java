@@ -15,26 +15,23 @@ public interface Controller {
      */
     void start();
 
+    void onStart();
+
+    void onOption();
+
     void pause();
 
     GameModel getModel();
-
-<<<<<<< HEAD
-    void updateGame();
-
-    void setSoundEnable(boolean isEnable);
 
     void resume();
 
     //GamePanel
     void onPause();
 
-    void onOption();
-
     void onResume();
 
     void onBackToMenu();
-=======
+
     MainFrame getView();
 
     void updateGame();
@@ -42,5 +39,8 @@ public interface Controller {
     void setSoundEnable(boolean isEnable);
 
     void loadLevelFromFile(String filepath);
->>>>>>> main
+
+    void onBackMenu();
+
+    void exit();
 }

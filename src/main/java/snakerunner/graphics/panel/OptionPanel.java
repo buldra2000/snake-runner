@@ -19,6 +19,7 @@ public class OptionPanel extends BasePanelImpl {
     private static final String SOUND = "Sound On / Off";
 
     private final Controller controller;
+
     private final JButton apply;
     private final JButton back;
     private final JCheckBox checkbox;
@@ -57,8 +58,8 @@ public class OptionPanel extends BasePanelImpl {
 
     @Override
     public void addActionListeners(){
-        apply.addActionListener(e -> controller.onBackToMenu());
-        back.addActionListener(e -> controller.onBackToMenu());
+        apply.addActionListener(e -> controller.onBackMenu());
+        back.addActionListener(e -> controller.onBackMenu());
         checkbox.addActionListener(e -> {
             final boolean enable = checkbox.isSelected();
             AudioPlayer.setSoundEnabled(enable);

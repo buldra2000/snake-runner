@@ -2,10 +2,8 @@ package snakerunner.graphics.panel;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
+
 import snakerunner.controller.Controller;
-import snakerunner.graphics.MainFrame;
 import snakerunner.graphics.impl.BasePanelImpl;
 
 public class MenuPanel extends BasePanelImpl {
@@ -45,8 +43,8 @@ public class MenuPanel extends BasePanelImpl {
 
     @Override
     public void addActionListeners() {
-        start.addActionListener(e -> controller.start());
+        start.addActionListener(e -> controller.onStart());
         option.addActionListener(e -> controller.onOption());
-        exit.addActionListener(e -> System.exit(0));
+        exit.addActionListener(e -> controller.exit());
     }
 }

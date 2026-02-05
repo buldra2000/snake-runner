@@ -13,20 +13,14 @@ public interface MainFrame {
 
     void showGame();
 
+    void setPanels(final MenuPanel menuPanel, final GamePanel gamePanel, final OptionPanel optionPanel);
+
     void showOption();
 
     void pause();
     void setMenuPanel(MenuPanel menuPanel);
 
     void setController(Controller controller);
-    
-    void setGamePanel(GamePanel gamePanel);
-
-    void startGameLoop(Runnable onTick);
-    void setOptionPanel(OptionPanel optionPanel);
-
-    void stopGameLoop();
-    void won();
 
     void setSoundEnabled(boolean isEnable);
     void lose();

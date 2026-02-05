@@ -2,10 +2,7 @@ package snakerunner.graphics.impl;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-
 import javax.swing.JFrame;
-import javax.swing.Timer;
-
 import snakerunner.controller.Controller;
 import snakerunner.graphics.MainFrame;
 import snakerunner.graphics.panel.GamePanel;
@@ -18,7 +15,6 @@ public class MainFrameImpl extends JFrame implements MainFrame {
     private static final String TITLE = "Snake Runner";
     private static final double PROPORTION = 0.5;
     private Controller controller;
-    private Timer timer;
     private MenuPanel menuPanel;
     private GamePanel gamePanel;
     private OptionPanel optionPanel;
@@ -48,6 +44,13 @@ public class MainFrameImpl extends JFrame implements MainFrame {
         final int width = (int)(screensize.width * PROPORTION);
         final int height = (int)(screensize.height * PROPORTION);
         setSize(width,height);
+    }
+
+    @Override
+    public void setPanels(final MenuPanel menuPanel, final GamePanel gamePanel, final OptionPanel optionPanel){
+        this.menuPanel = menuPanel;
+        this.gamePanel = gamePanel;
+        this.optionPanel = optionPanel;
     }
 
     @Override
@@ -90,47 +93,14 @@ public class MainFrameImpl extends JFrame implements MainFrame {
     }
 
     @Override
-    public void startGameLoop(final Runnable onTick) {
-        timer = new Timer(200, e -> onTick.run()); 
-        //gamePanel.updateTimer(getTimeLeft());
-        //gamePanel.updateTimer(/*getTimeLeft()*/);
-        timer.start();
-    }
-
-    @Override
-    public void stopGameLoop() {
-    if (timer != null) {
-            timer.stop();
-        }
-    }
-
-    @Override
-    public void setSoundEnabled(final boolean isEnable) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setSoundEnabled'");
-    }
-
-    @Override
-    public void setGamePanel(GamePanel gamePanel) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setGamePanel'");
-    }
-
-    @Override
-    public void setOptionPanel(OptionPanel optionPanel) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setOptionPanel'");
-    }
-
-    @Override
-    public void won() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'won'");
-    }
-
-    @Override
     public void lose() {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'lose'");
+    }
+
+    @Override
+    public void setSoundEnabled(boolean isEnable) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'setSoundEnabled'");
     }
 }

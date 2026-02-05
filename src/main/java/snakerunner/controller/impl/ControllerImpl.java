@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.Timer;
+
 import snakerunner.controller.Controller;
 import snakerunner.core.StateGame;
 import snakerunner.graphics.MainFrame;
@@ -25,7 +27,10 @@ public class ControllerImpl implements Controller {
     private static final Logger LOGGER = Logger.getLogger(ControllerImpl.class.getName()); 
 
     private StateGame state;
-
+    private MenuPanel menuPanel;
+    private OptionPanel optionPanel;
+    private GamePanel gamePanel;
+    private Timer gameLoopTimer;
     private final MainFrame mainFrame;
     private final GameModel gameModel;
 
@@ -44,15 +49,23 @@ public class ControllerImpl implements Controller {
     @Override
     public void init() {
         menuPanel = PanelFactory.createMenuPanel(this);
-        gamePanel = PanelFactory.createGamePanel(this);
         optionPanel = PanelFactory.createOptionPanel(this);
+        gamePanel = PanelFactory.createGamePanel(this);
 
-        mainFrame.setMenuPanel(menuPanel);
-        mainFrame.setGamePanel(gamePanel);
-        mainFrame.setOptionPanel(optionPanel);
+        mainFrame.setPanels(menuPanel, gamePanel, optionPanel);
 
         mainFrame.showMenu();
         mainFrame.display();
+    }
+
+    @Override
+    public void onStart(){
+        mainFrame.showGame();
+    }
+
+    @Override
+    public void onOption(){
+        mainFrame.showOption();
     }
 
     @Override
@@ -83,12 +96,16 @@ public class ControllerImpl implements Controller {
         updateHUD();
 
         if (gameModel.isGameOver()) {
-            mainFrame.stopGameLoop();
             state = StateGame.GAME_OVER;
             mainFrame.showMenu();
         }
 
         //view Render
+    }
+
+    @Override
+    public void onBackMenu(){
+        mainFrame.showMenu();
     }
 
     @Override
@@ -132,4 +149,36 @@ public class ControllerImpl implements Controller {
             throw new IllegalStateException(errorMsg, e);
         }
     }
+
+    private void updateHUD(){}
+
+    @Override
+    public void exit(){
+        System.exit(0);
+    }
+
+    @Override
+    public void resume() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'resume'");
+    }
+
+    @Override
+    public void onPause() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onPause'");
+    }
+
+    @Override
+    public void onResume() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onResume'");
+    }
+
+    @Override
+    public void onBackToMenu() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'onBackToMenu'");
+    }
+
 }
