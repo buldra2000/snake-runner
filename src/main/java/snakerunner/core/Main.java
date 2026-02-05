@@ -18,8 +18,8 @@ public class Main {
 
         mainFrame.setController(controller);
         
-        controller.loadLevelFromFile("levels/level1.txt");
         controller.init();
+        controller.start();
     }
 }
 

@@ -6,8 +6,6 @@ public interface GameModel {
     
     public void update();
 
-    public void checkCollisions();
-
     public boolean isGameOver();
 
     public void loadLevel(LevelData data);
@@ -20,4 +18,6 @@ public interface GameModel {
     public List<Collectible> getCollectibles();
 
     public Level getLevel();
+
+    public boolean isLevelCompleted();
 }

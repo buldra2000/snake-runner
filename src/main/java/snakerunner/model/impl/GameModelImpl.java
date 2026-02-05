@@ -15,6 +15,7 @@ public class GameModelImpl implements GameModel {
     private Level currentLevel;
     private Snake snake;
     private List<Collectible> collectibles;
+    private boolean levelCompleted;
     //private LevelManager levelManager;
 
     public GameModelImpl() {
@@ -25,14 +26,17 @@ public class GameModelImpl implements GameModel {
         // Every game update logic goes here and updates the game state accordingly.
         
         //snake.move();
-        //checkCollisions();
-        
-    }
 
-    @Override
-    public void checkCollisions() {
-        // TODO Auto-generated method stub
+        //controllo impatti con ostacoli/porte/corpo del serpente
+        checkCollisions();
 
+        //gestione power-up e cibo
+        //checkCollectibles();
+
+        if (collectibles.isEmpty()) {
+            levelCompleted = true;
+        }
+    
     }
 
     @Override
@@ -52,6 +56,7 @@ public class GameModelImpl implements GameModel {
         this.currentLevel = new LevelImpl(data);
         this.collectibles = data.getCollectibles();
         //this.snake = new SnakeImpl(new Point2D<>(5,5), 3);
+        this.levelCompleted = false;
         debugPrintLevel();
     }
 
@@ -76,6 +81,11 @@ public class GameModelImpl implements GameModel {
         return this.currentLevel;
     }
 
+    @Override
+    public boolean isLevelCompleted() {
+        return this.levelCompleted;
+    }
+
     private void debugPrintLevel() {
         System.out.println("=== LEVEL DEBUG ===");
 
@@ -91,4 +101,23 @@ public class GameModelImpl implements GameModel {
 
         System.out.println("===================");
     }
+
+    private void checkCollisions() {
+        // Implement collision detection logic here
+    }
+
+    /*
+    private void checkCollectibles() {
+        Iterator<Collectible> iterator = collectibles.iterator();
+        Point2D<Integer, Integer> snakeHead = snake.getHead();
+
+        while (iterator.hasNext()) {
+            Collectible c = iterator.next();
+            if (c.getPosition().equals(snakeHead)) {
+                c.consume(snake);
+                iterator.remove();
+            }
+        }
+    }
+*/
 }

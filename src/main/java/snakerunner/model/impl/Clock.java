@@ -14,8 +14,7 @@ public class Clock implements Collectible{
 
     @Override
     public void consume(Snake snake) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'consume'");
+        // model.slowDownSnake();
     }
 
     @Override

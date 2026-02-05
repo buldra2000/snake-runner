@@ -17,6 +17,8 @@ public class ControllerImpl implements Controller {
     private StateGame state;
     private final MainFrame mainFrame;
     private final GameModel gameModel;
+    private int currentLevel = 1; //fixare magic number
+    private static final int MAX_LEVEL = 4; //fixare magic number
 
     public ControllerImpl(MainFrame mainFrame, GameModel gameModel) {
         this.mainFrame = mainFrame; //view
@@ -32,9 +34,8 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void start() {
-        // Implementation to start the game loop
+        loadCurrentLevel();
         mainFrame.startGameLoop(this::updateGame);
-        //gameModel.loadLevel(level);
         state = StateGame.RUNNING;
         mainFrame.startTimer();
         System.out.println("StateGame.RUNNING , StartTimer");
@@ -67,6 +68,10 @@ public class ControllerImpl implements Controller {
             mainFrame.stopGameLoop();
             state = StateGame.GAME_OVER;
             mainFrame.showMenu();
+        } else if (gameModel.isLevelCompleted()) {
+            System.out.println("Controller: Level Completed!");
+            mainFrame.stopGameLoop();
+            nextLevel();
         }
 
         //view Render
@@ -89,7 +94,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void loadLevelFromFile(String filePath) {
-        // Legge il file dal classpath (resources)
+        
         try (InputStream is = LevelLoader.class
                 .getClassLoader()
                 .getResourceAsStream(filePath)) {
@@ -108,5 +113,19 @@ public class ControllerImpl implements Controller {
         } catch (IOException e) {
             throw new RuntimeException("Errore caricamento livello", e);
         }
+    }
+
+    private void loadCurrentLevel() {
+        String filePath = "levels/level" + currentLevel + ".txt";
+        loadLevelFromFile(filePath);
+    }
+
+    private void nextLevel() {
+        currentLevel++;
+        if (currentLevel > MAX_LEVEL) {
+            currentLevel = 1; 
+        }
+        loadCurrentLevel();
+        mainFrame.startGameLoop(this::updateGame);
     }
 }

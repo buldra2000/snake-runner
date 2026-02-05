@@ -14,7 +14,7 @@ public class FoodImpl implements Collectible{
 
     @Override
     public void consume(Snake snake) {
-        // Implement consumption logic here
+        // model.addScore();
     }
 
     @Override
