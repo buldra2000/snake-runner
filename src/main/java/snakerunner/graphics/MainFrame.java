@@ -16,7 +16,7 @@ public interface MainFrame {
 
     public void setController(Controller controller);
 
-    public void startGameLoop(Runnable onTick);
+    public void startGameLoop(int delay);
 
     public void stopGameLoop();
 
@@ -25,4 +25,6 @@ public interface MainFrame {
     public void stopTimer();
 
     public int getTimeLeft();
+
+    public void setTimerDelay(int delay);
 }

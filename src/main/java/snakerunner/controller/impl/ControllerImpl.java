@@ -35,7 +35,7 @@ public class ControllerImpl implements Controller {
     @Override
     public void start() {
         loadCurrentLevel();
-        mainFrame.startGameLoop(this::updateGame);
+        mainFrame.startGameLoop(gameModel.getSpeed());
         state = StateGame.RUNNING;
         mainFrame.startTimer();
         System.out.println("StateGame.RUNNING , StartTimer");
@@ -50,7 +50,7 @@ public class ControllerImpl implements Controller {
 
         mainFrame.stopTimer();
         System.out.println("StateGame.PAUSED , StopTimer");
-        mainFrame.startGameLoop(this::updateGame);
+        //mainFrame.startGameLoop(this::updateGame);
         //gameModel.loadLevel(level);
     }
 
@@ -62,6 +62,8 @@ public class ControllerImpl implements Controller {
         }
 
         gameModel.update();
+        mainFrame.setTimerDelay(gameModel.getSpeed());
+        //view Render
 
         if (gameModel.isGameOver()) {
             System.out.println("Controller: Game Over!");
@@ -74,7 +76,7 @@ public class ControllerImpl implements Controller {
             nextLevel();
         }
 
-        //view Render
+        
     }
 
     @Override
@@ -126,6 +128,6 @@ public class ControllerImpl implements Controller {
             currentLevel = 1; 
         }
         loadCurrentLevel();
-        mainFrame.startGameLoop(this::updateGame);
+        mainFrame.startGameLoop(gameModel.getSpeed());
     }
 }

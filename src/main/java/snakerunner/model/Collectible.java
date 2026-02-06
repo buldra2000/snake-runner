@@ -7,5 +7,5 @@ public interface Collectible {
 
     public Point2D<Integer, Integer> getPosition();
 
-    CollectibleType getType();
+    public CollectibleType getType();
 }
