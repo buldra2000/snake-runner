@@ -1,6 +1,7 @@
 package snakerunner.model.impl;
 
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import snakerunner.commons.Point2D;
@@ -31,7 +32,7 @@ public class GameModelImpl implements GameModel {
         checkCollisions();
 
         //gestione power-up e cibo
-        //checkCollectibles();
+        checkCollectibles();
 
         if (collectibles.isEmpty()) {
             levelCompleted = true;
@@ -116,18 +117,18 @@ public class GameModelImpl implements GameModel {
         // Implement collision detection logic here
     }
 
-    /*
+    
     private void checkCollectibles() {
         Iterator<Collectible> iterator = collectibles.iterator();
         Point2D<Integer, Integer> snakeHead = snake.getHead();
 
         while (iterator.hasNext()) {
             Collectible c = iterator.next();
+
             if (c.getPosition().equals(snakeHead)) {
-                c.consume(snake);
+                c.consume(this);
                 iterator.remove();
             }
         }
     }
-*/
 }
