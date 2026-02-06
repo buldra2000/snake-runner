@@ -30,4 +30,6 @@ public interface GameModel {
     public void moveSnakeLeft();
 
     public void moveSnakeRight();
+
+    public Position getSnakeHeadPosition();
 }
