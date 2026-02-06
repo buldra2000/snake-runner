@@ -84,6 +84,14 @@ public class ControllerImpl implements Controller {
                 case KeyEvent.VK_D:
                     gameModel.moveSnakeRight();
                     break;
+                case KeyEvent.VK_P:
+                case KeyEvent.VK_ESCAPE:
+                    pause();
+                    break;
+            }
+        }else if (state == StateGame.MENU || state == StateGame.GAME_OVER){
+            if (keyCode == KeyEvent.VK_ENTER){
+                start();
             }
         }
     }
