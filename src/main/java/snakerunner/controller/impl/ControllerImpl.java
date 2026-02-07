@@ -224,6 +224,7 @@ public class ControllerImpl implements Controller {
         });
     }
 
+    // Metodo per aggiornare il delay del timer dopo aver raccolto un orologio
     private void setTimerDelay(int delay) {
         gameLoopTimer.setDelay(delay);
     }
