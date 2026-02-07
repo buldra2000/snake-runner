@@ -12,6 +12,7 @@ import snakerunner.model.Level;
 import snakerunner.model.LevelData;
 import snakerunner.model.Snake;
 
+
 public class GameModelImpl implements GameModel {
 
     private Level currentLevel;

@@ -45,12 +45,6 @@ public class ControllerImpl implements Controller {
         initGameLoop();
     }
 
-    private void initGameLoop() {
-        gameLoopTimer = new Timer(1000, e -> {
-            updateGame();
-        });
-    }
-
     //Creation components
     @Override
     public void init() {
@@ -211,5 +205,11 @@ public class ControllerImpl implements Controller {
         }
         loadCurrentLevel();
         mainFrame.startGameLoop(gameModel.getSpeed());
+    }
+
+    private void initGameLoop() {
+        gameLoopTimer = new Timer(1000, e -> {
+            updateGame();
+        });
     }
 }

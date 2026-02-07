@@ -8,9 +8,9 @@ import java.awt.Graphics;
 public final class ScoreView extends BaseView {
 
     private static final long serialVersionUID = 1L;
-    private static final int WIDTH = 60;
+    private static final int WIDTH = 80;
     private static final int HEIGHT = 30;
-    private static final String SCORE_TEXT = "Score : %03d";
+    private static final String SCORE_TEXT = "Score : %02d";
     private static final int X = 1;
     private static final int Y = 15;
     

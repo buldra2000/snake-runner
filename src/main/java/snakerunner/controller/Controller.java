@@ -8,8 +8,9 @@ import snakerunner.model.Collectible;
 import snakerunner.model.GameModel;
 import snakerunner.model.Snake;
 
+
 //LinkedBlockingQueue -> thread safe
-//Il controller non deve vedere Swing
+//controller must not see Swing
 
 public interface Controller {
 

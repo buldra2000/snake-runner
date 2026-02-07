@@ -64,8 +64,8 @@ public final class GamePanel extends BasePanelImpl {
         ePanel.add(resume);
         wPanel.add((JLabel)lifeView);
         sPanel.setLayout(new BoxLayout(sPanel, BoxLayout.X_AXIS));
+        nPanel.add((JLabel)scoreView);
         back.setAlignmentX(LEFT_ALIGNMENT);
-        sPanel.add((JLabel)scoreView);
         sPanel.add(back);
         this.addActionListeners();
     }
