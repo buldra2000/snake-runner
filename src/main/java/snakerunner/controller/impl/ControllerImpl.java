@@ -69,7 +69,9 @@ public class ControllerImpl implements Controller {
     @Override
     public void start() {
         timeLeft = 5;
+        score = 0;
         timerView.setValue(timeLeft);
+        scoreView.setValue(score);
         gameLoopTimer.start();
         mainFrame.showGame();
         // Implementation to start the game loop
@@ -145,6 +147,13 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
+    public void addScore(final int points) {
+        this.score += points;
+        gameModel.addScore(points);
+        scoreView.setValue(this.score);
+    }
+
+    @Override
     public void onBackMenu() {
         mainFrame.showMenu();
     }
@@ -185,7 +194,8 @@ public class ControllerImpl implements Controller {
 
     private void updateHUD() {
         timerView.setValue(timeLeft);
-        scoreView.setValue(score);
+        this.score = gameModel.getScore();
+        scoreView.setValue(this.score);
     }
 
     @Override

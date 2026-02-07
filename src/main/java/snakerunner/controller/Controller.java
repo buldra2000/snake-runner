@@ -67,6 +67,11 @@ public interface Controller {
     int getScore();
 
     /**
+     * Add Score from Model (Controller - Model)
+     */
+    void addScore(final int points);
+
+    /**
      * Resume game
      */
     void resume();
