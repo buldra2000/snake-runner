@@ -3,27 +3,27 @@ package snakerunner.graphics.panel;
 import java.awt.BorderLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import snakerunner.controller.Controller;
+import snakerunner.graphics.hud.BaseHUD;
 import snakerunner.graphics.hud.LevelView;
 import snakerunner.graphics.hud.LifeView;
 import snakerunner.graphics.hud.ScoreView;
 import snakerunner.graphics.hud.TimerView;
 import snakerunner.graphics.impl.BasePanelImpl;
 
-public class GamePanel extends BasePanelImpl {
+public final class GamePanel extends BasePanelImpl {
 
+    private static final long serialVersionUID = 1L;
     private static final String PAUSE = "Pause";
     private static final String RESUME = "Resume";
     private static final String BACK = "Back to Menu";
-
-    private TimerView timerView;
-    private ScoreView scoreView;
-    private LevelView levelView;
-    private LifeView lifeView;
-
+    private final BaseHUD timerView;
+    private final BaseHUD scoreView;
+    private final BaseHUD levelView;
+    private final BaseHUD lifeView;
     private final Controller controller;
-
     private final JPanel nPanel;
     private final JPanel sPanel;
     private final GameBoardPanel gameBoardPanel;
@@ -58,15 +58,14 @@ public class GamePanel extends BasePanelImpl {
         add(ePanel, BorderLayout.EAST);
         add(wPanel, BorderLayout.WEST);
         add(sPanel, BorderLayout.SOUTH);
-        nPanel.add(timerView);
-        nPanel.add(levelView);
+        nPanel.add((JLabel)timerView);
+        nPanel.add((JLabel)levelView);
         ePanel.add(pause);
         ePanel.add(resume);
-        wPanel.add(lifeView);
+        wPanel.add((JLabel)lifeView);
         sPanel.setLayout(new BoxLayout(sPanel, BoxLayout.X_AXIS));
-        scoreView.setAlignmentX(RIGHT_ALIGNMENT);
+        nPanel.add((JLabel)scoreView);
         back.setAlignmentX(LEFT_ALIGNMENT);
-        sPanel.add(scoreView);
         sPanel.add(back);
         this.addActionListeners();
     }
@@ -95,7 +94,11 @@ public class GamePanel extends BasePanelImpl {
         repaint();
     }*/
 
-    public TimerView getTimerView() {
+    public BaseHUD getTimerView() {
         return timerView;
-    }   
+    }
+
+    public BaseHUD getScoreView(){
+        return scoreView;
+    }
 }

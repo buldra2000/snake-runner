@@ -8,8 +8,9 @@ import javax.swing.JPanel;
 import snakerunner.commons.Point2D;
 import snakerunner.controller.Controller;
 import snakerunner.model.Collectible;
+import snakerunner.model.SnakeSegment;
 
-public class GameBoardPanel extends JPanel {
+public final class GameBoardPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private static final int CELL = 15;
@@ -65,9 +66,22 @@ public class GameBoardPanel extends JPanel {
      * @param g
      */
     private void drawSnake(final Graphics g) {
-        /**
-         * TODO
-         */
+        var snake = controller.getSnake();
+
+        g.setColor(Color.GREEN);
+
+        if (snake == null) {
+            return;
+        }
+
+        g.setColor(Color.GREEN);
+
+        for (SnakeSegment s : snake.getFullBody()) {
+            Point2D<Integer, Integer> p = s.pos;
+            final int x = p.getX() * CELL;
+            final int y = p.getY() * CELL;
+            g.fillRect(x, y, CELL, CELL);
+        }
     }
 
     /**

@@ -5,23 +5,19 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
+import javax.swing.JPanel;
 
-import snakerunner.controller.Controller;
 import snakerunner.graphics.MainFrame;
-import snakerunner.graphics.panel.GamePanel;
-import snakerunner.graphics.panel.MenuPanel;
-import snakerunner.graphics.panel.OptionPanel;
+import snakerunner.graphics.panel.BasePanel;
 
-public class MainFrameImpl extends JFrame implements MainFrame {
+public final class MainFrameImpl extends JFrame implements MainFrame {
     
+    private static final long serialVersionUID = 1L;
     private static final String TITLE = "Snake Runner";
     private static final double PROPORTION = 0.5;
-    private Controller controller;
-    private MenuPanel menuPanel;
-    private GamePanel gamePanel;
-    private OptionPanel optionPanel;
-    private Timer timer;
+    private BasePanel menuPanel;
+    private BasePanel gamePanel;
+    private BasePanel optionPanel;
 
 
     public MainFrameImpl() {
@@ -37,36 +33,36 @@ public class MainFrameImpl extends JFrame implements MainFrame {
     }
 
     @Override
-    public void setPanels(MenuPanel menuPanel, GamePanel gamePanel, OptionPanel optionPanel) {
+    public void setPanels(final BasePanel menuPanel, final BasePanel gamePanel, final BasePanel optionPanel) {
        this.menuPanel = menuPanel;
        this.gamePanel = gamePanel;
        this.optionPanel = optionPanel;
     }
 
-    private void setDimensionFrame(){
-        Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-        int width = (int)(screensize.width * PROPORTION);
-        int height = (int)(screensize.height * PROPORTION);
+    private void setDimensionFrame() {
+        final Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
+        final int width = (int)(screensize.width * PROPORTION);
+        final int height = (int)(screensize.height * PROPORTION);
         setSize(width,height);
     }
 
     @Override
     public void showMenu() {
-        setContentPane(menuPanel);
+        setContentPane((JPanel)menuPanel);
         revalidate();
         repaint();
     }
 
     @Override
     public void showGame() {
-        setContentPane(gamePanel);
+        setContentPane((JPanel)gamePanel);
         revalidate();
         repaint();
     }
 
     @Override
     public void showOption() {
-        setContentPane(optionPanel);
+        setContentPane((JPanel)optionPanel);
         revalidate();
         repaint();
     }
@@ -76,7 +72,7 @@ public class MainFrameImpl extends JFrame implements MainFrame {
         JOptionPane.showMessageDialog(
         this,
         "You Won!",
-        "Victory",
+        "Snake Runner",
         JOptionPane.INFORMATION_MESSAGE
     );
     }
@@ -86,26 +82,9 @@ public class MainFrameImpl extends JFrame implements MainFrame {
         JOptionPane.showMessageDialog(
             this, 
             "You Lose!",
-            "Lose",
+            "Snake Runner",
             JOptionPane.INFORMATION_MESSAGE
         );
     }
 
-    @Override
-    public void startGameLoop(int delay) {
-        timer = new Timer(delay, e -> controller.updateGame()); 
-        timer.start();
-    }
-
-    @Override
-    public void stopGameLoop() {
-    if (timer != null) {
-            timer.stop();
-        }
-    }
-
-    @Override
-    public void setTimerDelay(int delay) {
-        timer.setDelay(delay);
-    }
 }

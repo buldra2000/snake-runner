@@ -1,6 +1,5 @@
 package snakerunner.graphics.panel;
 
-import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -11,8 +10,9 @@ import snakerunner.audio.AudioPlayer;
 import snakerunner.controller.Controller;
 import snakerunner.graphics.impl.BasePanelImpl;
 
-public class OptionPanel extends BasePanelImpl {
+public final class OptionPanel extends BasePanelImpl {
 
+    private static final long serialVersionUID = 1L;
     private static final String APPLY = "Apply";
     private static final String BACK = "Back";
     private static final String SOUND = "Sound On / Off";
@@ -38,15 +38,14 @@ public class OptionPanel extends BasePanelImpl {
         this.addActionListeners();
     }
 
-    private JPanel setSoundPanel() {
+    private void setSoundPanel() {
         final JPanel soundPanel = new JPanel();
         soundPanel.setLayout(new BoxLayout(soundPanel, BoxLayout.X_AXIS));
-        soundPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        soundPanel.setAlignmentX(CENTER_ALIGNMENT);
         soundPanel.setOpaque(false);
         soundPanel.add(label);
         soundPanel.add(checkbox);
         add(soundPanel);
-        return soundPanel;
     }
 
     @Override

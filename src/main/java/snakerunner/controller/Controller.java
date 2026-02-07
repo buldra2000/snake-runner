@@ -6,9 +6,11 @@ import snakerunner.commons.Point2D;
 import snakerunner.graphics.MainFrame;
 import snakerunner.model.Collectible;
 import snakerunner.model.GameModel;
+import snakerunner.model.Snake;
+
 
 //LinkedBlockingQueue -> thread safe
-//Il controller non deve vedere Swing
+//controller must not see Swing
 
 public interface Controller {
 
@@ -35,6 +37,12 @@ public interface Controller {
     GameModel getModel();
 
     /**
+     * Get Snake
+     * @return
+     */
+    Snake getSnake();
+
+    /**
      * Get obstacles from Model (Controller - Model)
      * 
      * @return
@@ -45,6 +53,23 @@ public interface Controller {
      * Get Collectibles from Model (Controller - Model)
     */
     List<Collectible> getCollectibles();
+
+    /**
+     * Get Level from Model (Controller - Model)
+     * @return
+     */
+    int getLevel();
+
+    /**
+     * Get Score from Model (Controller - Model)
+     * @return
+     */
+    int getScore();
+
+    /**
+     * Add Score from Model (Controller - Model)
+     */
+    void addScore(final int points);
 
     /**
      * Resume game

@@ -1,7 +1,0 @@
-# Livello 4 - SnakeRunner
-
-[Obstacles]
-1,1
-
-[Collectibles]
-2,8,FOOD

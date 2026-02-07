@@ -4,14 +4,13 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
-
 /*ScoreView is a HUD component and is used to show score in GamePanel*/
-public class ScoreView extends JPanel {
+public final class ScoreView extends BaseView {
 
-    private static final int WIDTH = 60;
+    private static final long serialVersionUID = 1L;
+    private static final int WIDTH = 80;
     private static final int HEIGHT = 30;
-    private static final String SCORE_TEXT = "Score : %03d";
+    private static final String SCORE_TEXT = "Score : %02d";
     private static final int X = 1;
     private static final int Y = 15;
     
@@ -22,8 +21,9 @@ public class ScoreView extends JPanel {
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
     }
     
-    public void setScore(int score) {
-        this.score = score;
+    @Override
+    public void setValue(int value) {
+        this.score = value;
         repaint();
     }
 

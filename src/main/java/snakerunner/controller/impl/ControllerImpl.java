@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Set;
 
@@ -13,55 +14,51 @@ import snakerunner.commons.Point2D;
 import snakerunner.controller.Controller;
 import snakerunner.core.StateGame;
 import snakerunner.graphics.MainFrame;
-import snakerunner.graphics.hud.TimerView;
+import snakerunner.graphics.hud.BaseHUD;
+import snakerunner.graphics.panel.BasePanel;
 import snakerunner.graphics.panel.GamePanel;
-import snakerunner.graphics.panel.MenuPanel;
-import snakerunner.graphics.panel.OptionPanel;
 import snakerunner.graphics.panel.PanelFactory;
 import snakerunner.model.Collectible;
 import snakerunner.model.GameModel;
 import snakerunner.model.LevelData;
+import snakerunner.model.Snake;
 import snakerunner.model.impl.LevelLoader;
 
 public class ControllerImpl implements Controller {
+
     private StateGame state;
-    private MenuPanel menuPanel;
-    private OptionPanel optionPanel;
-    private GamePanel gamePanel;
     private Timer gameLoopTimer;
-    private TimerView timerView;
+    private BaseHUD timerView;
+    private BaseHUD scoreView;
     private final MainFrame mainFrame;
     private final GameModel gameModel;
     private int currentLevel = 1; //fixare magic number
     private static final int MAX_LEVEL = 4; //fixare magic number
 
     private int timeLeft;
+    private int score;
 
     public ControllerImpl(final MainFrame mainFrame, final GameModel gameModel) {
         this.mainFrame = mainFrame; //view
         this.gameModel = gameModel; //model
         this.state = StateGame.MENU;
-        initGameLoop();
-    }
-
-    private void initGameLoop() {
-        gameLoopTimer = new Timer(1000, e -> {
-            updateGame();
-        });
+        initGameLoop(gameModel.getSpeed());
     }
 
     //Creation components
     @Override
     public void init() {
-        menuPanel = PanelFactory.createMenuPanel(this);
-        optionPanel = PanelFactory.createOptionPanel(this);
-        gamePanel = PanelFactory.createGamePanel(this);
+        final BasePanel menuPanel = PanelFactory.createMenuPanel(this);
+        final BasePanel optionPanel = PanelFactory.createOptionPanel(this);
+        final BasePanel gamePanel = PanelFactory.createGamePanel(this);
 
         mainFrame.setPanels(menuPanel, gamePanel, optionPanel);
         mainFrame.showMenu();
         mainFrame.display();
 
-        timerView = gamePanel.getTimerView();
+        timerView = ((GamePanel)gamePanel).getTimerView();
+        scoreView = ((GamePanel)gamePanel).getScoreView();
+        
     }
 
     @Override
@@ -71,13 +68,14 @@ public class ControllerImpl implements Controller {
 
     @Override
     public void start() {
-        timeLeft = 60;
-        timerView.setTimeLeft(timeLeft);
+        timeLeft = 5;
+        score = 0;
+        timerView.setValue(timeLeft);
+        scoreView.setValue(score);
         gameLoopTimer.start();
         mainFrame.showGame();
-        // Implementation to start the game loop
         loadCurrentLevel();
-        mainFrame.startGameLoop(gameModel.getSpeed());
+        initGameLoop(gameModel.getSpeed());
         state = StateGame.RUNNING;
     }
 
@@ -89,6 +87,13 @@ public class ControllerImpl implements Controller {
         }
     }
 
+    @Override
+    public void resume() {
+        if (state == StateGame.PAUSED) {
+            state = StateGame.RUNNING;
+            gameLoopTimer.restart();
+        }
+    }
 
     //tick di gioco 
     @Override
@@ -99,20 +104,28 @@ public class ControllerImpl implements Controller {
 
         gameModel.update();
         timeLeft--;
-        mainFrame.setTimerDelay(gameModel.getSpeed());
+
+        // Aggiorna la velocità del timer in base alla velocità attuale del gioco
+        setTimerDelay(gameModel.getSpeed());
 
         if (gameModel.isGameOver()) {
             state = StateGame.GAME_OVER;
             mainFrame.showMenu();
         } else if (gameModel.isLevelCompleted()) {
             System.out.println("Controller: Level Completed!");
-            mainFrame.stopGameLoop();
+            gameLoopTimer.stop();
             nextLevel();
         }
 
         //view Render
         updateHUD();
     }
+
+    @Override
+    public Snake getSnake(){
+        return gameModel.getSnake();
+    }
+
 
     @Override
     public Set<Point2D<Integer, Integer>> getObstacles() {
@@ -122,6 +135,23 @@ public class ControllerImpl implements Controller {
     @Override
     public List<Collectible> getCollectibles() {
         return gameModel.getCollectibles();
+    }
+
+    @Override
+    public int getLevel() {
+        return this.currentLevel;
+    }
+
+    @Override
+    public int getScore(){
+        return this.score;
+    }
+
+    @Override
+    public void addScore(final int points) {
+        this.score += points;
+        gameModel.addScore(points);
+        scoreView.setValue(this.score);
     }
 
     @Override
@@ -150,7 +180,7 @@ public class ControllerImpl implements Controller {
                 throw new IllegalArgumentException("File livello non trovato: " + filePath);
             }
 
-            final List<String> lines = new BufferedReader(new InputStreamReader(is))
+            final List<String> lines = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))
                     .lines()
                     .toList();
 
@@ -164,20 +194,14 @@ public class ControllerImpl implements Controller {
     
 
     private void updateHUD() {
-        timerView.setTimeLeft(timeLeft);
+        timerView.setValue(timeLeft);
+        this.score = gameModel.getScore();
+        scoreView.setValue(this.score);
     }
 
     @Override
     public void exit() {
         System.exit(0);
-    }
-
-    @Override
-    public void resume() {
-        if(state == StateGame.PAUSED) {
-            state = StateGame.RUNNING;
-        }
-        gameLoopTimer.restart();
     }
 
     private void loadCurrentLevel() {
@@ -191,6 +215,17 @@ public class ControllerImpl implements Controller {
             currentLevel = 1; 
         }
         loadCurrentLevel();
-        mainFrame.startGameLoop(gameModel.getSpeed());
+        //gameloop??
+    }
+
+    private void initGameLoop(int delay) {
+        gameLoopTimer = new Timer(delay, e -> {
+            updateGame();
+        });
+    }
+
+    // Metodo per aggiornare il delay del timer dopo aver raccolto un orologio
+    private void setTimerDelay(int delay) {
+        gameLoopTimer.setDelay(delay);
     }
 }

@@ -4,11 +4,10 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-import javax.swing.JPanel;
-
 /*LifeView is a HUD component and is used to show the remaining life in GamePanel*/
-public class LifeView extends JPanel {
+public final class LifeView extends BaseView {
 
+    private static final long serialVersionUID = 1L;
     private static final String LIFE_TEXT = "Life : %1d";
     private static final int X = 5;
     private static final int Y = 15;
@@ -22,13 +21,19 @@ public class LifeView extends JPanel {
          setPreferredSize(new Dimension(WIDTH, HEIGHT));
     }
 
+    @Override
+    public void setValue(int value) {
+        this.life = value;
+        repaint();
+    }
+
     public void setLife(int life) {
         this.life = life;
         repaint();
     }
 
     @Override
-    protected void paintComponent(Graphics g) {
+    protected void paintComponent(final Graphics g) {
         super.paintComponent(g);
 
         final String lifeText = String.format(LIFE_TEXT, life);
