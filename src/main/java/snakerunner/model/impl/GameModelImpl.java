@@ -15,21 +15,25 @@ import snakerunner.model.Snake;
 
 public class GameModelImpl implements GameModel {
 
+    private static final int INITIAL_SPEED = 150;
+    private static final int SLOW_EFFECT_DURATION = 50;
+    private static final int SLOW_EFFECT_SPEED = 300;
+
     private Level currentLevel;
     private Snake snake;
     private List<Collectible> collectibles;
     private boolean levelCompleted;
     private int score;
     private int speed;
-    private int slowEffectDuration = 0;
+    private int slowEffectDuration;
 
     public GameModelImpl() {
         currentLevel = null;
-        //snake = new SnakeImpl(new Point2D<>(5,5), 3);
+        snake = null;
         collectibles = Collections.emptyList();
         levelCompleted = false;
         score = 0;
-        speed = 150;
+        speed = INITIAL_SPEED;
         slowEffectDuration = 0;
     }
 
@@ -63,7 +67,7 @@ public class GameModelImpl implements GameModel {
         if (slowEffectDuration > 0) {
             slowEffectDuration--;
             if (slowEffectDuration == 0) {
-                speed = 150; // reset speed after slow effect ends
+                speed = INITIAL_SPEED; // reset speed after slow effect ends
             }
         }
 
@@ -91,6 +95,7 @@ public class GameModelImpl implements GameModel {
         this.collectibles = data.getCollectibles();
         //this.snake = new SnakeImpl(new Point2D<>(5,5), 3);
         this.levelCompleted = false;
+
         //debugPrintLevel();
     }
 
@@ -132,8 +137,8 @@ public class GameModelImpl implements GameModel {
 
     @Override
     public void applySlowEffect() {
-        speed = 300;
-        slowEffectDuration = 50;
+        speed = SLOW_EFFECT_SPEED;
+        slowEffectDuration = SLOW_EFFECT_DURATION;
     }
 
     @Override
