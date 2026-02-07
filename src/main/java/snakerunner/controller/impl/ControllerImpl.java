@@ -194,8 +194,5 @@ public class ControllerImpl implements Controller {
         mainFrame.startGameLoop(gameModel.getSpeed());
     }
 
-    @Override
-    public void loadLevel(LevelData data) {
-        gameModel.loadLevel(data);
-    }
+   
 }

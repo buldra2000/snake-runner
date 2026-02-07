@@ -11,7 +11,7 @@ import snakerunner.model.GameModel;
 import snakerunner.model.Level;
 import snakerunner.model.LevelData;
 import snakerunner.model.Snake;
-import snakerunner.model.Position;
+
 
 public class GameModelImpl implements GameModel {
 

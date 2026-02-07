@@ -6,7 +6,7 @@ import snakerunner.commons.Point2D;
 import snakerunner.graphics.MainFrame;
 import snakerunner.model.Collectible;
 import snakerunner.model.GameModel;
-import snakerunner.model.LevelData;
+
 
 //LinkedBlockingQueue -> thread safe
 //controller must not see Swing
