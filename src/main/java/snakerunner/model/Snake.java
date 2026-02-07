@@ -20,47 +20,19 @@ import snakerunner.commons.Point2D;
 //}
 
 public class Snake  {
-
-    /**I define names for the snake pieces **/
-    public enum SegmentType {
-        HEAD,
-        BODY_STRAIGHT,
-        BODY_CURVE,
-        TAIL
-    }
-
-    public static final class SnakeSegment {
-        public final Point2D<Integer, Integer> pos;
-        public final SegmentType type;
-        /*where the head is looking */
-        public final Direction facing; 
-        /*direction of the previous piece closer to the head */
-        public final Direction toHead;
-        /*direction the next piece closer to the tail */
-        public final Direction toTail;
-
-        public SnakeSegment(Point2D<Integer, Integer> pos, SegmentType type,
-                            Direction facing, Direction toHead, Direction toTail){
-                            
-            this.pos =pos;
-            this.type =type;
-            this.facing = facing;
-            this.toHead = toHead;
-            this.toTail = toTail;                
-        }
-        
-    }
-
+    
     private static final int FIXED_SIZE = 5; //the lenght never changes
     private final LinkedList<SnakeSegment> body = new LinkedList<>(); //the list
     private Direction currentDirection = Direction.RIGHT; //initial direction
 
     public Snake(Point2D<Integer, Integer> startPosition){
+       
+    
         for (int i = 0; i < FIXED_SIZE; i++){
             //we create the points, if the head is at point X the pieces behind are ate X-1, X-2 ETC
             Point2D<Integer, Integer> p = new Point2D<>(startPosition.getX() - i, startPosition.getY());
             //at first the will be empty cuz update logic () will fill them 
-            body.add(new SnakeSegment(p, SegmentType.BODY_STRAIGHT,null, null, null));
+            body.add(new SnakeSegment(p, SnakeSegment.SegmentType.BODY_STRAIGHT,null, null, null));
         }
         updateLogic(); //makes head, tail and directions
 
@@ -82,7 +54,7 @@ public class Snake  {
         }
 
         //we add the new piece on top of the list (becomes the new head)
-        body.addFirst(new SnakeSegment(new Point2D<>(nextX, nextY), SegmentType.HEAD, currentDirection, null, null));
+        body.addFirst(new SnakeSegment(new Point2D<>(nextX, nextY), SnakeSegment.SegmentType.HEAD, currentDirection, null, null));
 
         //we remove the last piece so we maintain the 5 lenght
         body.removeLast();
@@ -145,13 +117,13 @@ public class Snake  {
             //first case : it's the head 
             if (i ==0) {
                 Direction toTail = getRelativeDirection(curr, body.get(1).pos);
-                body.set(i, new SnakeSegment(curr, SegmentType.HEAD, currentDirection,null, toTail));
+                body.set(i, new SnakeSegment(curr, SnakeSegment.SegmentType.HEAD, currentDirection,null, toTail));
 
             }
             //second case : it's the head 
             else if (i == body.size() - 1 ){
                 Direction toHead = getRelativeDirection(curr,body.get(i-1).pos);
-                body.set(i, new SnakeSegment(curr, SegmentType.TAIL,null, toHead, null));
+                body.set(i, new SnakeSegment(curr, SnakeSegment.SegmentType.TAIL,null, toHead, null));
 
             }
             //third case : it's the body 
@@ -163,7 +135,7 @@ public class Snake  {
                 Direction toTail = getRelativeDirection(curr, next);
 
                 //if prev dir and next dirr are on the same line it's going ahead, else is curving
-                SegmentType t = isStraight(prev, next) ? SegmentType.BODY_STRAIGHT : SegmentType.BODY_CURVE;
+                SnakeSegment.SegmentType t = isStraight(prev, next) ? SnakeSegment.SegmentType.BODY_STRAIGHT : SnakeSegment.SegmentType.BODY_CURVE;
                 body.set(i, new SnakeSegment(curr, t, null, toHead, toTail));
 
 
