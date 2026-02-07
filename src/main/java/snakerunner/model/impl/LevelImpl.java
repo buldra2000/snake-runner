@@ -8,12 +8,14 @@ import snakerunner.model.Level;
 import snakerunner.model.LevelData;
 
 public class LevelImpl implements Level{
-    // GRANDEZZA LIVELLO
+    private static final int WIDTH = 20;
+    private static final int HEIGHT = 20;
+
     private final Grid grid;
     private final Set<Point2D<Integer, Integer>> obstacles;
 
     public LevelImpl(LevelData data) {
-        this.grid = new GridImpl(20, 20);
+        this.grid = new GridImpl(WIDTH, HEIGHT);
         this.obstacles = data.getObstacles();
     }
 
