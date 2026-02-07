@@ -36,7 +36,6 @@ public class ControllerImpl implements Controller {
     private static final int MAX_LEVEL = 4; //fixare magic number
 
     private int timeLeft;
-    private int score;
 
     public ControllerImpl(final MainFrame mainFrame, final GameModel gameModel) {
         this.mainFrame = mainFrame; //view
@@ -69,9 +68,8 @@ public class ControllerImpl implements Controller {
     @Override
     public void start() {
         timeLeft = 5;
-        score = 0;
         timerView.setValue(timeLeft);
-        scoreView.setValue(score);
+        scoreView.setValue(gameModel.getScore());
         gameLoopTimer.start();
         mainFrame.showGame();
         loadCurrentLevel();
@@ -144,14 +142,7 @@ public class ControllerImpl implements Controller {
 
     @Override
     public int getScore(){
-        return this.score;
-    }
-
-    @Override
-    public void addScore(final int points) {
-        this.score += points;
-        gameModel.addScore(points);
-        scoreView.setValue(this.score);
+        return gameModel.getScore();
     }
 
     @Override
@@ -195,8 +186,7 @@ public class ControllerImpl implements Controller {
 
     private void updateHUD() {
         timerView.setValue(timeLeft);
-        this.score = gameModel.getScore();
-        scoreView.setValue(this.score);
+        scoreView.setValue(gameModel.getScore());
     }
 
     @Override

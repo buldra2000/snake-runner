@@ -2,6 +2,7 @@ package snakerunner.controller;
 
 import java.util.List;
 import java.util.Set;
+
 import snakerunner.commons.Point2D;
 import snakerunner.graphics.MainFrame;
 import snakerunner.model.Collectible;
@@ -65,11 +66,6 @@ public interface Controller {
      * @return
      */
     int getScore();
-
-    /**
-     * Add Score from Model (Controller - Model)
-     */
-    void addScore(final int points);
 
     /**
      * Resume game

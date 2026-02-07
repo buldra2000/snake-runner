@@ -91,7 +91,7 @@ public class GameModelImpl implements GameModel {
         this.collectibles = data.getCollectibles();
         //this.snake = new SnakeImpl(new Point2D<>(5,5), 3);
         this.levelCompleted = false;
-        debugPrintLevel();
+        //debugPrintLevel();
     }
 
     @Override
@@ -141,6 +141,7 @@ public class GameModelImpl implements GameModel {
         return speed;
     }
 
+    /*
     private void debugPrintLevel() {
         System.out.println("=== LEVEL DEBUG ===");
 
@@ -156,6 +157,7 @@ public class GameModelImpl implements GameModel {
 
         System.out.println("===================");
     }
+    */
 
     private void checkCollisions() {
         // Implement collision detection logic here
