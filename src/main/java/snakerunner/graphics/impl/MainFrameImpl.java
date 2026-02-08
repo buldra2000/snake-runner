@@ -87,4 +87,8 @@ public final class MainFrameImpl extends JFrame implements MainFrame {
         );
     }
 
+    public void refresh() {
+        this.repaint();
+    }
+
 }

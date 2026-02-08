@@ -57,7 +57,6 @@ public class ControllerImpl implements Controller {
 
         timerView = ((GamePanel)gamePanel).getTimerView();
         scoreView = ((GamePanel)gamePanel).getScoreView();
-        
     }
 
     @Override
@@ -68,12 +67,11 @@ public class ControllerImpl implements Controller {
     @Override
     public void start() {
         timeLeft = 5;
+        loadCurrentLevel();
         timerView.setValue(timeLeft);
         scoreView.setValue(gameModel.getScore());
-        gameLoopTimer.start();
         mainFrame.showGame();
-        loadCurrentLevel();
-        initGameLoop(gameModel.getSpeed());
+        gameLoopTimer.start();
         state = StateGame.RUNNING;
     }
 
@@ -117,6 +115,7 @@ public class ControllerImpl implements Controller {
 
         //view Render
         updateHUD();
+        mainFrame.refresh();
     }
 
     @Override

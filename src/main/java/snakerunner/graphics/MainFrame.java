@@ -41,4 +41,6 @@ public interface MainFrame {
      * Show JDialog "You lose!"
      */
     void lose();
+
+    void refresh();
 }

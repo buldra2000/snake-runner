@@ -38,7 +38,6 @@ public final class MenuPanel extends BasePanelImpl {
     @Override
     public void addActionListeners() {
         start.addActionListener(e -> {
-            controller.loadLevelFromFile("levels/level1.txt");
             controller.start();
         });
         option.addActionListener(e -> controller.onOption());

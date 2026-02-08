@@ -2,7 +2,11 @@ package snakerunner.graphics.panel;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Image;
+import java.io.IOException;
+import java.io.InputStream;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 import snakerunner.commons.Point2D;
@@ -15,11 +19,13 @@ public final class GameBoardPanel extends JPanel {
     private static final long serialVersionUID = 1L;
     private static final int CELL = 15;
     private final Controller controller;
+    private Image foodImage, clockImage, keyImage, obstacleImage;
 
     public GameBoardPanel(final Controller controller) {
         this.controller = controller;
         setOpaque(true);
         setBackground(Color.GRAY);
+        loadImages();
     }
 
     /**
@@ -34,6 +40,27 @@ public final class GameBoardPanel extends JPanel {
         drawSnake(g);
         drawObstacle(g);
         drawCollectibles(g);
+    }
+
+    private void loadImages() {
+        foodImage = loadImage("images/food.png");
+        clockImage = loadImage("images/clock.png");
+        keyImage = loadImage("images/key.png");
+        obstacleImage =loadImage("images/obstacle.png");
+    }
+
+    private Image loadImage(String path) {
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream(path)) {
+            if (is == null) {
+                return null;
+            }
+            
+            Image img = ImageIO.read(is);
+            return img;
+            
+        } catch (IOException e) {
+            throw new RuntimeException("Load Images Error", e);
+        }
     }
 
     /**
@@ -92,10 +119,11 @@ public final class GameBoardPanel extends JPanel {
         g.setColor(Color.RED);
 
         for (final Point2D<Integer, Integer> p : controller.getObstacles()) {
-            final int x = p.getX();
-            final int y = p.getY();
+            final int x = p.getX() * CELL;
+            final int y = p.getY() * CELL;
 
-            g.fillRect(x * CELL, y * CELL, CELL, CELL);
+            //g.fillRect(x * CELL, y * CELL, CELL, CELL);
+            g.drawImage(obstacleImage, x, y, CELL, CELL, this);
         }
     }
 
@@ -110,25 +138,13 @@ public final class GameBoardPanel extends JPanel {
         final int y = p.getY() * CELL;
 
         switch (collectible.getType()) {
-            case FOOD:
-                g.setColor(Color.PINK);
-                g.fillOval(x, y, CELL, CELL);
-                break;
-
-            case CLOCK:
-                g.setColor(Color.BLUE);
-                g.fillOval(x, y, CELL, CELL);
-                break;
-
-            case KEY:
-                g.setColor(Color.ORANGE);
-                g.fillOval(x, y, CELL, CELL);
-                break;
-        
-            default:
+            case FOOD -> g.drawImage(foodImage, x, y, CELL + 2, CELL + 2, this);
+            case CLOCK -> g.drawImage(clockImage, x, y, CELL + 2, CELL + 2, this);
+            case KEY -> g.drawImage(keyImage, x, y, CELL + 2, CELL + 2, this);
+            default -> {
                 g.setColor(Color.YELLOW);
                 g.fillOval(x, y, CELL, CELL);
-                break;
+            }
         }
        }
     }

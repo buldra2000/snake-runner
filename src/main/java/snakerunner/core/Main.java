@@ -19,7 +19,6 @@ public final class Main {
         final Controller controller = new ControllerImpl(mainFrame, gameModel);
         
         controller.init();
-        controller.start();
     }
 }
 
