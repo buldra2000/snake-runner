@@ -4,6 +4,9 @@ import java.util.Set;
 
 import snakerunner.commons.Point2D;
 
+/**
+ * Interface representing a level in the game.
+ */
 public interface Level {
     /**
      * Returns the grid associated with this level.
