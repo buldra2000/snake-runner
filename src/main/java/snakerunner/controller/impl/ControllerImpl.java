@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,8 @@ import snakerunner.graphics.panel.BasePanel;
 import snakerunner.graphics.panel.GamePanel;
 import snakerunner.graphics.panel.PanelFactory;
 import snakerunner.model.Collectible;
+import snakerunner.model.Direction;
+import snakerunner.model.Door;
 import snakerunner.model.GameModel;
 import snakerunner.model.LevelData;
 import snakerunner.model.Snake;
@@ -135,6 +138,14 @@ public class ControllerImpl implements Controller {
     }
 
     @Override
+    public List<Door> getDoors() {
+        if (gameModel.getLevel() != null) {
+            return gameModel.getLevel().getDoors();
+        }
+            return Collections.emptyList();
+    }
+
+    @Override
     public int getLevel() {
         return this.currentLevel;
     }
@@ -147,6 +158,11 @@ public class ControllerImpl implements Controller {
     @Override
     public void onBackMenu() {
         mainFrame.showMenu();
+    }
+
+    @Override
+    public Direction getDirection() {
+        return gameModel.getSnake().getCurrentDirection();
     }
 
     @Override

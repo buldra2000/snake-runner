@@ -80,6 +80,10 @@ public class Snake  {
 
     }
 
+    public Direction getCurrentDirection() {
+        return currentDirection;
+    }
+
     //returns the head position 
     public Point2D<Integer, Integer> getHead(){
         return body.getFirst().pos;

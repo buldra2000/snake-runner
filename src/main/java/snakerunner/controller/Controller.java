@@ -6,6 +6,8 @@ import java.util.Set;
 import snakerunner.commons.Point2D;
 import snakerunner.graphics.MainFrame;
 import snakerunner.model.Collectible;
+import snakerunner.model.Direction;
+import snakerunner.model.Door;
 import snakerunner.model.GameModel;
 import snakerunner.model.Snake;
 
@@ -54,6 +56,14 @@ public interface Controller {
      * Get Collectibles from Model (Controller - Model)
     */
     List<Collectible> getCollectibles();
+
+    /**
+     * Get Doors from Model (Controller - Model)
+     * @return
+     */
+    List<Door> getDoors();
+
+    Direction getDirection();
 
     /**
      * Get Level from Model (Controller - Model)
