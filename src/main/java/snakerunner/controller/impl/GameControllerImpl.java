@@ -19,11 +19,13 @@ import snakerunner.model.GameModel;
 import snakerunner.model.LevelData;
 import snakerunner.model.impl.LevelLoader;
 
+/**
+ * The GameControllerImpl class implements the GameController interface and manages the game logic and state.
+ */
 public class GameControllerImpl implements GameController {
 
     private static final int MAX_LEVEL = 4;
     private static final int INITIAL_LEVEL = 1;
-
     private StateGame state;
     private Timer gameLoopTimer;
     private BaseHUD timerView;
@@ -35,6 +37,12 @@ public class GameControllerImpl implements GameController {
 
     private int timeLeft;
 
+    /**
+     * Constructor for GameControllerImpl.
+     * 
+     * @param mainFrame the main frame of the game.
+     * @param gameModel the game model that contains the game state and logic.
+     */
     public GameControllerImpl(final MainFrame mainFrame, final GameModel gameModel) {
         this.mainFrame = mainFrame; 
         this.gameModel = gameModel; 
@@ -44,15 +52,15 @@ public class GameControllerImpl implements GameController {
 
     //KeyListener
     @Override
-    public void keyPressed(final KeyEvent e){
+    public void keyPressed(final KeyEvent e) {
         //if the fame is not running we ignore the keys
-        if (state !=StateGame.RUNNING){
+        if (state != StateGame.RUNNING) {
             return;
         }
         final int key = e.getKeyCode();
 
         //the keyboard bottoms becomes the snake's direction WASD
-        switch (key){
+        switch (key) {
             case KeyEvent.VK_UP:
                 gameModel.getSnake().setDirection(Direction.UP);
                 break;
@@ -75,15 +83,19 @@ public class GameControllerImpl implements GameController {
     }
 
     @Override 
-    public void keyTyped(final KeyEvent e){
+    public void keyTyped(final KeyEvent e) {
 
     }
 
     @Override
-    public void keyReleased(final KeyEvent e){
+    public void keyReleased(final KeyEvent e) {
 
     }
 
+    /**
+     * Starts the game by initializing the timer, loading the current level,
+     * and updating the HUD.
+     */
     @Override
     public void start() {
         timeLeft = 5;
@@ -94,6 +106,9 @@ public class GameControllerImpl implements GameController {
         state = StateGame.RUNNING;
     }
 
+    /**
+     * Pauses the game if it is currently running by stopping the game loop timer
+     */
     @Override
     public void pause() {
         if (state == StateGame.RUNNING) {
@@ -102,6 +117,10 @@ public class GameControllerImpl implements GameController {
         }
     }
 
+    /**
+     * Resumes the game if it is currently paused by restarting
+     * the game loop timer and updating the game state to RUNNING.
+     */
     @Override
     public void resume() {
         if (state == StateGame.PAUSED) {
@@ -110,7 +129,11 @@ public class GameControllerImpl implements GameController {
         }
     }
 
-    //tick di gioco 
+    /**
+     * Updates the game state by calling the update method of the game model,
+     * checking for game over and level completion conditions,
+     * and updating the HUD and main frame accordingly.
+     */
     @Override
     public void updateGame() {
         if (state != StateGame.RUNNING) {
@@ -120,7 +143,6 @@ public class GameControllerImpl implements GameController {
         gameModel.update();
         timeLeft--;
 
-        // Aggiorna la velocità del timer in base alla velocità attuale del gioco
         setTimerDelay(gameModel.getSpeed());
 
         if (gameModel.isGameOver()) {
@@ -136,9 +158,11 @@ public class GameControllerImpl implements GameController {
         mainFrame.refresh();
     }
     
+    /**
+     * Loads a level from a file and updates the game model with the new level data.
+     */
     @Override
     public void loadLevelFromFile(final String filePath) {
-        
         try (InputStream is = LevelLoader.class
                 .getClassLoader()
                 .getResourceAsStream(filePath)) {
@@ -146,7 +170,7 @@ public class GameControllerImpl implements GameController {
             if (is == null) {
                 throw new IllegalArgumentException("File livello non trovato: " + filePath);
             }
-
+            
             final List<String> lines = new BufferedReader(new InputStreamReader(is, StandardCharsets.UTF_8))
                     .lines()
                     .toList();
@@ -157,6 +181,22 @@ public class GameControllerImpl implements GameController {
         } catch (final IOException e) {
             throw new RuntimeException("Errore caricamento livello", e);
         }
+    }
+
+    /**
+     * Sets the delay of the game loop timer
+     * after collecting a power-up.
+     * 
+     * @param delay the new delay for the game loop timer in milliseconds.
+     */
+    private void setTimerDelay(final int delay) {
+        gameLoopTimer.setDelay(delay);
+    }
+
+    @Override
+    public void setHUD(final BaseHUD timerView, final BaseHUD scoreView) {
+        this.timerView = timerView;
+        this.scoreView = scoreView;
     }
 
     private void updateHUD() {
@@ -184,17 +224,6 @@ public class GameControllerImpl implements GameController {
         });
     }
 
-    // Metodo per aggiornare il delay del timer dopo aver raccolto un orologio
-    private void setTimerDelay(final int delay) {
-        gameLoopTimer.setDelay(delay);
-    }
-
-    @Override
-    public void setHUD(final BaseHUD timerView, final BaseHUD scoreView) {
-        this.timerView = timerView;
-        this.scoreView = scoreView;
-    }
-    
     private void handleLevelCompleted() {
         gameLoopTimer.stop();
         nextLevel();
