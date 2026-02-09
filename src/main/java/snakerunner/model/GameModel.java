@@ -74,8 +74,11 @@ public interface GameModel {
 
     /**
      * Open doors
-    */
+     */
     void openDoor();
     
+    /**
+     * Resets the game state to the initial conditions. This method is called when the game is over to prepare for a new game.
+     */
     void resetState();
 }

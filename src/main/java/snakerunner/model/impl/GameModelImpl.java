@@ -66,7 +66,7 @@ public class GameModelImpl implements GameModel {
         checkSlowEffect();
 
         if (isGameOver) {
-            resetState();
+            resetAfterGameOver();
         }
         if (collectibles.isEmpty()) {
             levelCompleted = true;
@@ -78,13 +78,6 @@ public class GameModelImpl implements GameModel {
 
     @Override
     public boolean isGameOver() {
-        /*
-        if (level.IsBlocked(snake.getHead())) {
-            return true;
-        } else {
-            return false;
-        }
-        */
        return isGameOver;
     }
 
@@ -216,5 +209,12 @@ public class GameModelImpl implements GameModel {
                 speed = INITIAL_SPEED; // reset speed after slow effect ends
             }
         }
+    }
+
+    private void resetAfterGameOver() {
+        this.snake = new Snake(STARTING_POSITION);
+        this.isGameOver = false;
+        this.speed = INITIAL_SPEED;
+        this.slowEffectDuration = 0;
     }
 }
