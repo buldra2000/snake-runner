@@ -26,8 +26,10 @@ import snakerunner.model.GameModel;
 import snakerunner.model.LevelData;
 import snakerunner.model.Snake;
 import snakerunner.model.impl.LevelLoader;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
-public class ControllerImpl implements Controller {
+public class ControllerImpl implements Controller, KeyListener {
 
     private StateGame state;
     private Timer gameLoopTimer;
@@ -61,6 +63,50 @@ public class ControllerImpl implements Controller {
         timerView = ((GamePanel)gamePanel).getTimerView();
         scoreView = ((GamePanel)gamePanel).getScoreView();
     }
+
+    //KeyListener
+    @Override
+    public void keyPressed(KeyEvent e){
+        //if the fame is not running we ignore the keys
+        if (state !=StateGame.RUNNING){
+            return;
+        }
+        int key = e.getKeyCode();
+
+        //the keyboard bottoms becomes the snake's direction WASD
+        switch (key){
+            case KeyEvent.VK_UP:
+                gameModel.getSnake().setDirection(Direction.UP);
+                break;
+            case KeyEvent.VK_DOWN:
+                gameModel.getSnake().setDirection(Direction.DOWN);
+                break;
+            case KeyEvent.VK_LEFT:
+                gameModel.getSnake().setDirection(Direction.LEFT);
+                break;
+            case KeyEvent.VK_RIGHT:
+                gameModel.getSnake().setDirection(Direction.RIGHT);
+                break;
+            case KeyEvent.VK_P:
+                pause();
+                break;
+
+        }
+
+
+    }
+
+    @Override 
+    public void keyTyped(KeyEvent e){
+
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e){
+
+    }
+
+
 
     @Override
     public void onOption() {
