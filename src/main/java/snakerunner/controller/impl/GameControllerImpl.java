@@ -1,5 +1,6 @@
 package snakerunner.controller.impl;
 
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,7 +24,6 @@ import snakerunner.model.GameModel;
 import snakerunner.model.LevelData;
 import snakerunner.model.Snake;
 import snakerunner.model.impl.LevelLoader;
-import java.awt.event.KeyEvent;
 
 public class GameControllerImpl implements GameController {
 
@@ -127,12 +127,11 @@ public class GameControllerImpl implements GameController {
         setTimerDelay(gameModel.getSpeed());
 
         if (gameModel.isGameOver()) {
+            gameLoopTimer.stop();
             state = StateGame.GAME_OVER;
             mainFrame.showMenu();
         } else if (gameModel.isLevelCompleted()) {
-            System.out.println("Controller: Level Completed!");
-            gameLoopTimer.stop();
-            nextLevel();
+            handleLevelCompleted();
         }
 
         //view Render
@@ -200,13 +199,14 @@ public class GameControllerImpl implements GameController {
             throw new RuntimeException("Errore caricamento livello", e);
         }
     }
-    
+
     private void updateHUD() {
         timerView.setValue(timeLeft);
         scoreView.setValue(gameModel.getScore());
     }
 
     private void loadCurrentLevel() {
+        gameModel.resetState();
         String filePath = "levels/level" + currentLevel + ".txt";
         loadLevelFromFile(filePath);
     }
@@ -216,8 +216,6 @@ public class GameControllerImpl implements GameController {
         if (currentLevel > MAX_LEVEL) {
             currentLevel = 1; 
         }
-        loadCurrentLevel();
-        //gameloop??
     }
 
     private void initGameLoop(int delay) {
@@ -235,5 +233,13 @@ public class GameControllerImpl implements GameController {
     public void setHUD(BaseHUD timerView, BaseHUD scoreView) {
         this.timerView = timerView;
         this.scoreView = scoreView;
+    }
+    
+    private void handleLevelCompleted() {
+        System.out.println("You've completed the level!");
+        gameLoopTimer.stop();
+        nextLevel();
+        loadCurrentLevel();
+        gameLoopTimer.start();
     }
 }
