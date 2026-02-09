@@ -57,6 +57,16 @@ public class ControllerImpl implements Controller, KeyListener {
         final BasePanel gamePanel = PanelFactory.createGamePanel(this);
 
         mainFrame.setPanels(menuPanel, gamePanel, optionPanel);
+
+        //downcast
+        mainFrame.addKeyListener(this);
+
+        if (mainFrame instanceof javax.swing.JFrame) {
+        javax.swing.JFrame frame = (javax.swing.JFrame) mainFrame;
+        frame.setFocusable(true);
+        frame.requestFocusInWindow();
+    }
+        
         mainFrame.showMenu();
         mainFrame.display();
 
@@ -73,7 +83,7 @@ public class ControllerImpl implements Controller, KeyListener {
         }
         int key = e.getKeyCode();
 
-        //the keyboard bottoms becomes the snake's direction WASD
+        //the keyboard bottoms becomes the snake's direction 
         switch (key){
             case KeyEvent.VK_UP:
                 gameModel.getSnake().setDirection(Direction.UP);
@@ -115,6 +125,7 @@ public class ControllerImpl implements Controller, KeyListener {
 
     @Override
     public void start() {
+        gameModel.resetLives();
         timeLeft = 5;
         loadCurrentLevel();
         timerView.setValue(timeLeft);
@@ -137,6 +148,10 @@ public class ControllerImpl implements Controller, KeyListener {
         if (state == StateGame.PAUSED) {
             state = StateGame.RUNNING;
             gameLoopTimer.restart();
+
+            if (mainFrame instanceof javax.swing.JFrame) {
+            ((javax.swing.JFrame) mainFrame).requestFocusInWindow();
+            }  
         }
     }
 

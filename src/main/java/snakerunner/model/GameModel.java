@@ -78,5 +78,7 @@ public interface GameModel {
      * Open doors
     */
     void openDoor();
+
+    void resetLives();
     
 }

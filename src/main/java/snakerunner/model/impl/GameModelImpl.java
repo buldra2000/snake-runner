@@ -19,6 +19,7 @@ public class GameModelImpl implements GameModel {
     private static final int INITIAL_SPEED = 150;
     private static final int SLOW_EFFECT_DURATION = 50;
     private static final int SLOW_EFFECT_SPEED = 300;
+    private static final int INITIAL_LIVES = 3;
 
     private Level currentLevel;
     private Snake snake;
@@ -26,6 +27,7 @@ public class GameModelImpl implements GameModel {
     private boolean levelCompleted;
     private int score;
     private int speed;
+    private int lives;
     private int slowEffectDuration;
     private List<Door> doors;
 
@@ -36,15 +38,33 @@ public class GameModelImpl implements GameModel {
         levelCompleted = false;
         score = 0;
         speed = INITIAL_SPEED;
+        lives = INITIAL_LIVES; 
         slowEffectDuration = 0;
     }
 
     @Override
     public void update() {
         // Every game update logic goes here and updates the game state accordingly.
+        if (isGameOver() || levelCompleted)
+            return;
+        
         snake.move();
 
-        checkCollisions();
+        //Check fatal collision
+        Point2D<Integer,Integer> head = snake.getHead();
+        if (getObstacles().contains(head) || snake.isCollidingWithItself()){
+
+            this.lives--; //remove of life
+
+            if (this.lives > 0){
+                //the snake respawns
+                this.snake= new Snake (new Point2D<>(5,10));
+            }else {
+                return;
+            }
+
+        }
+
         // TODO Auto-generated method stub
         //Should we check for a collision in case the snake hits itself?
 
@@ -79,7 +99,8 @@ public class GameModelImpl implements GameModel {
             return false;
         }
         */
-       return false;
+       return this.lives <=0;
+
     }
 
     @Override
@@ -158,6 +179,14 @@ public class GameModelImpl implements GameModel {
         }
     }
 
+    @Override
+    public void resetLives(){
+        this.lives =3;
+        this.levelCompleted = false;
+        this.snake = new Snake (new Point2D<Integer,Integer>(5, 10));
+
+    }
+
 
     /*
     private void debugPrintLevel() {
@@ -185,6 +214,7 @@ public class GameModelImpl implements GameModel {
         }
         */
     }
+
 
     
     private void checkCollectibles() {
