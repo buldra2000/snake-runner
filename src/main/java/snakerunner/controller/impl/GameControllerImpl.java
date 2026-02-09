@@ -37,8 +37,8 @@ public class GameControllerImpl implements GameController {
     private int timeLeft;
 
     public GameControllerImpl(final MainFrame mainFrame, final GameModel gameModel) {
-        this.mainFrame = mainFrame; //view
-        this.gameModel = gameModel; //model
+        this.mainFrame = mainFrame; 
+        this.gameModel = gameModel; 
         this.state = StateGame.MENU;
         initGameLoop(gameModel.getSpeed());
     }
@@ -175,6 +175,7 @@ public class GameControllerImpl implements GameController {
         currentLevel++;
         if (currentLevel > MAX_LEVEL) {
             currentLevel = 1; 
+            //show win screen
         }
     }
 
