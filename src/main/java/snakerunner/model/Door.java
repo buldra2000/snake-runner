@@ -24,8 +24,8 @@ public class Door extends Obstacle {
     }
 
     //Getting door's positions
-    public Point2D<Integer,Integer> getPosition() {
-    return new Point2D<Integer,Integer>(getX(), getY());
+    public Point2D<Integer, Integer> getPosition() {
+    return new Point2D<Integer, Integer>(getX(), getY());
     }
 
 }
