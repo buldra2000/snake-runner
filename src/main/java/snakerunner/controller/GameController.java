@@ -9,7 +9,6 @@ import snakerunner.graphics.hud.BaseHUD;
 import snakerunner.model.Collectible;
 import snakerunner.model.Direction;
 import snakerunner.model.Door;
-import snakerunner.model.GameModel;
 import snakerunner.model.Snake;
 
 
@@ -27,13 +26,6 @@ public interface GameController {
      * Pause Game (Model - Controller - View)
      */
     void pause();
-
-    /**
-     * Get Model.
-     * 
-     * @return the GameModel instance.
-     */
-    GameModel getModel();
 
     /**
      * Get Snake.
