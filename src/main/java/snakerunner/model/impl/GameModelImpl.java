@@ -164,25 +164,6 @@ public class GameModelImpl implements GameModel {
         }
     }
 
-
-    /*
-    private void debugPrintLevel() {
-        System.out.println("=== LEVEL DEBUG ===");
-
-        System.out.println("Walls:");
-        for (Point2D<Integer, Integer> p : currentLevel.getObstacles()) {
-            System.out.println("  wall at " + p);
-        }
-
-        System.out.println("Collectibles:");
-        for (Collectible c : collectibles) {
-            System.out.println("  collectible at " + c.getPosition());
-        }
-
-        System.out.println("===================");
-    }
-    */
-
     private void checkCollisions() {
         // Implement collision detection logic here
         Point2D<Integer,Integer> head= snake.getHead();
