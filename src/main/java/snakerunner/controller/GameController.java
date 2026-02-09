@@ -1,25 +1,22 @@
 package snakerunner.controller;
 
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.Set;
 
 import snakerunner.commons.Point2D;
-import snakerunner.graphics.MainFrame;
+import snakerunner.graphics.hud.BaseHUD;
 import snakerunner.model.Collectible;
 import snakerunner.model.Direction;
 import snakerunner.model.Door;
 import snakerunner.model.GameModel;
 import snakerunner.model.Snake;
 
-/**
- * The Controller interface defines the methods for controlling the game.
- */
-public interface Controller {
 
-    /**
-     * Set Panel.
-     */
-    void init();
+//LinkedBlockingQueue -> thread safe
+//controller must not see Swing
+
+public interface GameController {
 
     /**
      * Starts the game loop.
@@ -27,12 +24,7 @@ public interface Controller {
     void start();
 
     /**
-     * Show OptionPanel (Controller - View).
-     */
-    void onOption();
-
-    /**
-     * Pause Game (Model - Controller - View).
+     * Pause Game (Model - Controller - View)
      */
     void pause();
 
@@ -83,6 +75,8 @@ public interface Controller {
      */
     int getLevel();
 
+    void setHUD(final BaseHUD timerView, final BaseHUD scoreView);
+
     /**
      * Get Score from Model (Controller - Model).
      * 
@@ -96,14 +90,7 @@ public interface Controller {
     void resume();
 
     /**
-     * Get View.
-     * 
-     * @return the MainFrame instance.
-     */
-    MainFrame getView();
-
-    /**
-     * Update gameLoop.
+     * Update gameLoop
      */
     void updateGame();
 
@@ -114,13 +101,9 @@ public interface Controller {
      */
     void loadLevelFromFile(String filepath);
 
-    /**
-     * Back to menu (Controller - View).
-     */
-    void onBackMenu();
+    void keyPressed(KeyEvent e);
 
-    /**
-     * Exit to the application.
-     */
-    void exit();
+    void keyTyped(KeyEvent e);
+
+    void keyReleased(KeyEvent e);
 }
