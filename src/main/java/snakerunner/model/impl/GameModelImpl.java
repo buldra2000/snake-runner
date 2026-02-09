@@ -66,18 +66,12 @@ public class GameModelImpl implements GameModel {
         //gestione power-up e cibo
         checkCollectibles();
 
-        if (slowEffectDuration > 0) {
-            slowEffectDuration--;
-            if (slowEffectDuration == 0) {
-                speed = INITIAL_SPEED; // reset speed after slow effect ends
-            }
-        }
+        checkSlowEffect();
 
         if (collectibles.isEmpty()) {
             levelCompleted = true;
-            System.out.println("Level Completed!");
             //debug
-            resetLevel();
+            //resetLevel();
         }
     
     }
@@ -164,24 +158,15 @@ public class GameModelImpl implements GameModel {
         }
     }
 
-
-    /*
-    private void debugPrintLevel() {
-        System.out.println("=== LEVEL DEBUG ===");
-
-        System.out.println("Walls:");
-        for (Point2D<Integer, Integer> p : currentLevel.getObstacles()) {
-            System.out.println("  wall at " + p);
-        }
-
-        System.out.println("Collectibles:");
-        for (Collectible c : collectibles) {
-            System.out.println("  collectible at " + c.getPosition());
-        }
-
-        System.out.println("===================");
+    @Override
+    public void resetState() {
+        this.snake = new Snake(STARTING_POSITION);
+        this.collectibles = Collections.emptyList();
+        this.levelCompleted = false;
+        this.score = 0;
+        this.speed = INITIAL_SPEED;
+        this.slowEffectDuration = 0;
     }
-    */
 
     private void checkCollisions() {
         // Implement collision detection logic here
@@ -207,14 +192,12 @@ public class GameModelImpl implements GameModel {
         }
     }
 
-    private void resetLevel() {
-        this.snake = new Snake(STARTING_POSITION);
-        this.collectibles = Collections.emptyList();
-        this.levelCompleted = false;
-        this.score = 0;
-        this.speed = INITIAL_SPEED;
-        this.slowEffectDuration = 0;
-
-        loadLevel(currentLevelData);
+    private void checkSlowEffect() {
+        if (slowEffectDuration > 0) {
+            slowEffectDuration--;
+            if (slowEffectDuration == 0) {
+                speed = INITIAL_SPEED; // reset speed after slow effect ends
+            }
+        }
     }
 }
