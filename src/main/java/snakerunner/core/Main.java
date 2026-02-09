@@ -1,8 +1,7 @@
 package snakerunner.core;
 
-
-import snakerunner.controller.Controller;
-import snakerunner.controller.impl.ControllerImpl;
+import snakerunner.controller.NavigationController;
+import snakerunner.controller.impl.NavigationControllerImpl;
 import snakerunner.graphics.MainFrame;
 import snakerunner.graphics.impl.MainFrameImpl;
 import snakerunner.model.GameModel;
@@ -16,9 +15,9 @@ public final class Main {
 
         final MainFrame mainFrame = new MainFrameImpl();
         final GameModel gameModel = new GameModelImpl();
-        final Controller controller = new ControllerImpl(mainFrame, gameModel);
+        final NavigationController navigationController = new NavigationControllerImpl(mainFrame, gameModel);
         
-        controller.init();
+        navigationController.init();
     }
 }
 

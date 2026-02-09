@@ -12,13 +12,10 @@ import java.util.Set;
 import javax.swing.Timer;
 
 import snakerunner.commons.Point2D;
-import snakerunner.controller.Controller;
+import snakerunner.controller.GameController;
 import snakerunner.core.StateGame;
 import snakerunner.graphics.MainFrame;
 import snakerunner.graphics.hud.BaseHUD;
-import snakerunner.graphics.panel.BasePanel;
-import snakerunner.graphics.panel.GamePanel;
-import snakerunner.graphics.panel.PanelFactory;
 import snakerunner.model.Collectible;
 import snakerunner.model.Direction;
 import snakerunner.model.Door;
@@ -27,7 +24,7 @@ import snakerunner.model.LevelData;
 import snakerunner.model.Snake;
 import snakerunner.model.impl.LevelLoader;
 
-public class ControllerImpl implements Controller {
+public class GameControllerImpl implements GameController {
 
     private StateGame state;
     private Timer gameLoopTimer;
@@ -40,31 +37,18 @@ public class ControllerImpl implements Controller {
 
     private int timeLeft;
 
-    public ControllerImpl(final MainFrame mainFrame, final GameModel gameModel) {
+    public GameControllerImpl(final MainFrame mainFrame, final GameModel gameModel) {
         this.mainFrame = mainFrame; //view
         this.gameModel = gameModel; //model
         this.state = StateGame.MENU;
         initGameLoop(gameModel.getSpeed());
     }
 
-    //Creation components
     @Override
-    public void init() {
-        final BasePanel menuPanel = PanelFactory.createMenuPanel(this);
-        final BasePanel optionPanel = PanelFactory.createOptionPanel(this);
-        final BasePanel gamePanel = PanelFactory.createGamePanel(this);
-
-        mainFrame.setPanels(menuPanel, gamePanel, optionPanel);
-        mainFrame.showMenu();
-        mainFrame.display();
-
-        timerView = ((GamePanel)gamePanel).getTimerView();
-        scoreView = ((GamePanel)gamePanel).getScoreView();
-    }
-
-    @Override
-    public void onOption() {
-        mainFrame.showOption();
+    public void setHUD(final BaseHUD timerView, final BaseHUD scoreView) {
+        this.timerView = timerView;
+        this.scoreView = scoreView;
+    
     }
 
     @Override
@@ -73,7 +57,6 @@ public class ControllerImpl implements Controller {
         loadCurrentLevel();
         timerView.setValue(timeLeft);
         scoreView.setValue(gameModel.getScore());
-        mainFrame.showGame();
         gameLoopTimer.start();
         state = StateGame.RUNNING;
     }
@@ -154,12 +137,6 @@ public class ControllerImpl implements Controller {
     public int getScore(){
         return gameModel.getScore();
     }
-
-    @Override
-    public void onBackMenu() {
-        mainFrame.showMenu();
-    }
-
     @Override
     public Direction getDirection() {
         return gameModel.getSnake().getCurrentDirection();
@@ -168,11 +145,6 @@ public class ControllerImpl implements Controller {
     @Override
     public GameModel getModel() {
         return gameModel;
-    }
-
-    @Override
-    public MainFrame getView() {
-        return mainFrame;
     }
     
     @Override
@@ -198,15 +170,9 @@ public class ControllerImpl implements Controller {
         }
     }
     
-
     private void updateHUD() {
         timerView.setValue(timeLeft);
         scoreView.setValue(gameModel.getScore());
-    }
-
-    @Override
-    public void exit() {
-        System.exit(0);
     }
 
     private void loadCurrentLevel() {

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import snakerunner.commons.Point2D;
-import snakerunner.graphics.MainFrame;
+import snakerunner.graphics.hud.BaseHUD;
 import snakerunner.model.Collectible;
 import snakerunner.model.Direction;
 import snakerunner.model.Door;
@@ -15,22 +15,12 @@ import snakerunner.model.Snake;
 //LinkedBlockingQueue -> thread safe
 //controller must not see Swing
 
-public interface Controller {
-
-    /**
-     * Set Panel
-     */
-    void init();
+public interface GameController {
 
     /**
      * Starts the game loop.
      */
     void start();
-
-    /**
-     * Show OptionPanel (Controller - View)
-     */
-    void onOption();
 
     /**
      * Pause Game (Model - Controller - View)
@@ -71,6 +61,8 @@ public interface Controller {
      */
     int getLevel();
 
+    void setHUD(final BaseHUD timerView, final BaseHUD scoreView);
+
     /**
      * Get Score from Model (Controller - Model)
      * @return
@@ -83,13 +75,6 @@ public interface Controller {
     void resume();
 
     /**
-     * Get View
-     * 
-     * @return
-     */
-    MainFrame getView();
-
-    /**
      * Update gameLoop
      */
     void updateGame();
@@ -100,14 +85,4 @@ public interface Controller {
      * @param filepath path file levels
      */
     void loadLevelFromFile(String filepath);
-
-    /**
-     * Back to menu (Controller - View)
-     */
-    void onBackMenu();
-
-    /**
-     * Exit to the application
-     */
-    void exit();
 }
