@@ -48,9 +48,6 @@ public class GameModelImpl implements GameModel {
     @Override
     public void update() {
         // Every game update logic goes here and updates the game state accordingly.
-        if (isGameOver) {
-            return;
-        }
         snake.move();
 
         checkCollisions();
@@ -68,6 +65,9 @@ public class GameModelImpl implements GameModel {
 
         checkSlowEffect();
 
+        if (isGameOver) {
+            resetState();
+        }
         if (collectibles.isEmpty()) {
             levelCompleted = true;
             //debug
