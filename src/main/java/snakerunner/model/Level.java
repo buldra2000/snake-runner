@@ -31,9 +31,10 @@ public interface Level {
      */
     boolean isBlocked(Point2D<Integer, Integer> position);
 
-   /**
-     * Returns the list od doors present in the level
-     * @®eturn list of doors
-    */
+    /**
+     * Returns the list od doors present in the level.
+     * 
+     * @return list of doors.
+     */
     java.util.List<Door> getDoors();
 }

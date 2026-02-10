@@ -9,81 +9,104 @@ import snakerunner.commons.Point2D;
  * The GameModel interface defines the core functionalities of the game.
  */
 public interface GameModel {
-    
-    /** 
-     * Updates the game state. 
+
+    /**
+     * Updates the game state.
      */
     void update();
 
-    /** 
-     * Checks if the game is over. 
+    /**
+     * Checks if the game is over.
+     * 
+     * @return MISSING JAVADOC.
      */
     boolean isGameOver();
 
-    /** 
-     * Loads a level from the given data. 
+    /**
+     * Loads a level from the given data.
+     *
+     * @param data MISSING JAVADOC.
      */
     void loadLevel(LevelData data);
 
-    /** 
-     * Returns the snake in the game. 
+    /**
+     * Returns the snake in the game.
+     *
+     * @return MISSING JAVADOC.
      */
     Snake getSnake();
 
-    /** 
-     * Returns the list of collectibles in the game. 
+    /**
+     * Returns the list of collectibles in the game.
+     *
+     * @return MISSING JAVADOC.
      */
     List<Collectible> getCollectibles();
 
-    /** 
-     * Returns the current level. 
+    /**
+     * Returns the current level.
+     *
+     * @return MISSING JAVADOC.
      */
     Level getLevel();
 
-    //Adding obstacles
+    /**
+     * Adding obstacles.
+     *
+     * @return position of obstacle.
+     */
     Set<Point2D<Integer, Integer>> getObstacles();
-    
+
     /**
      * Checks if the current level is completed.
+     *
      * @return true if the level is completed, false otherwise.
      */
     boolean isLevelCompleted();
 
-    /** Adds points to the player's score. 
+    /**
+     * Adds points to the player's score.
+     *
      * @param points The number of points to add to the score.
      */
     void addScore(int points);
 
-    /** 
-     * Returns the current score. 
+    /**
+     * Returns the current score.
+     *
      * @return The current score.
      */
     int getScore();
 
     /**
      * Returns the current lives.
+     *
      * @return The current lives.
      */
     int getLives();
-    
-    /** 
+
+    /**
      * Applies the slow effect to the game after the snake consumes a clock.
      */
     void applySlowEffect();
 
-    /** 
-     * Returns the current speed of the game. 
+    /**
+     * Returns the current speed of the game.
+     *
      * @return The current speed of the game.
      */
     int getSpeed();
 
     /**
-     * Open doors
+     * Open doors.
      */
     void openDoor();
 
+    /**
+     * Reset lives.
+     */
     void resetLives();
-    
+
     /**
      * Resets the game state to the initial conditions. This method is called when the game is over to prepare for a new game.
      */

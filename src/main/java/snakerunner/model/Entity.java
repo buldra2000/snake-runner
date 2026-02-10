@@ -1,30 +1,52 @@
 package snakerunner.model;
 
+/**
+ * MISSING JAVADOC.
+ */
 public class Entity {
     protected int x;
-    protected int y;   
-   
-   
-  
-  public void generate(){
+    protected int y;
 
-  }
-   //To read the coordinates
-    public int getX(){
+    /**
+     * MISSING JAVADOC.
+     */
+    public void generate() {
+
+    }
+
+    /**
+     * To read the coordinates.
+     * 
+     * @return X-coordinate.
+     */
+    public int getX() {
        return x;
     }
-    public int getY(){
+
+    /**
+     * To read the coordinates.
+     * 
+     * @return Y-coordinate.
+     */
+    public int getY() {
        return y;
     }
 
-//Setting the coordinates
-public void setX(int x){
-    this.x= x;
+    /**
+     * Setting the coordinates.
+     * 
+     * @param x set X-coordinate.
+     */
+    public void setX(final int x) {
+        this.x = x;
+    }
 
-}
-public void setY(int y){
-    this.y=y;
-}
-
-   
+    /**
+     * Setting the coordinates.
+     * 
+     * @param y set Y-coordinate.
+     */
+    public void setY(final int y) {
+        this.y = y;
+    }
 }

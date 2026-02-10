@@ -1,6 +1,8 @@
 package snakerunner.core;
 
-//costanti: dimensione griglia, vite iniziali, velocità, punteggio per item
+/**
+ * constants: grid size, starting lives, speed, score per item.
+ */
 public class GameConfiguration {
-    
+
 }

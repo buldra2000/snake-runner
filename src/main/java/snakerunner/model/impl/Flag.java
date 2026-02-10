@@ -5,16 +5,18 @@ import snakerunner.model.Collectible;
 import snakerunner.model.CollectibleType;
 import snakerunner.model.GameModel;
 
-public class Flag implements Collectible{
+/**
+ * MISSING JAVADOC.
+ */
+public final class Flag implements Collectible {
     private final Point2D<Integer, Integer> position;
-
 
     /**
      * Constructs a Flag collectible at the specified position.
      *
      * @param position The (x, y) coordinates where the flag is located in the game world.
      */
-    public Flag (final Point2D<Integer, Integer> position) {
+    public Flag(final Point2D<Integer, Integer> position) {
         this.position = position;
     }
 
@@ -33,6 +35,4 @@ public class Flag implements Collectible{
     public Point2D<Integer, Integer> getPosition() {
         return position;
     }
-
-
 }

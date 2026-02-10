@@ -6,15 +6,23 @@ import snakerunner.model.Collectible;
 import snakerunner.model.CollectibleType;
 import snakerunner.model.GameModel;
 
-public class LifeBoost implements Collectible {
+/**
+ * MISSING JAVADOC.
+ */
+public final class LifeBoost implements Collectible {
     private final Point2D<Integer, Integer> position;
 
+    /**
+     * MISSING JAVADOC.
+     *
+     * @param position MISSING JAVADOC.
+     */
     public LifeBoost(final Point2D<Integer, Integer> position) {
         this.position = position;
     }
 
     @Override
-    public void consume(GameModel model) {
+    public void consume(final GameModel model) {
         AudioPlayer.playSound("lifeup.wav");
         //model.addLife(); //TODO implementare addLife() in GameModelImpl
     }
