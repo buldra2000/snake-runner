@@ -51,7 +51,7 @@ public class GameModelImpl implements GameModel {
             return;
         
         snake.move();
-
+        /*  
         //Check fatal collision
         Point2D<Integer,Integer> head = snake.getHead();
         if (getObstacles().contains(head) || snake.isCollidingWithItself()){
@@ -65,7 +65,7 @@ public class GameModelImpl implements GameModel {
                 return;
             }
 
-        }
+        }*/
 
         // TODO Auto-generated method stub
         //Should we check for a collision in case the snake hits itself?
@@ -201,18 +201,18 @@ public class GameModelImpl implements GameModel {
     /* Collision logic */
         Point2D<Integer,Integer> head= snake.getHead();
         if(snake.isCollidingWithItself()) {
-            isGameOver= true;
+            handleCollision();
             return;
         }
 
         if(currentLevel.isBlocked(head) ){
-            isGameOver=true;
+            handleCollision();
             return;
         }
         if(doors != null) /* If the door is ≠ null */{
             for (Door door : doors) {
-                if(!door.isOpen() && door.getPosition().equals(head)) { 
-                isGameOver=true;
+                if (!door.isOpen() && door.getPosition().equals(head)) { 
+                handleCollision();
                 return;
                 }
             }
@@ -220,7 +220,15 @@ public class GameModelImpl implements GameModel {
 
     }
 
-
+    private void handleCollision() {
+        this.lives--;
+        if (this.lives > 0) {
+            this.snake = new Snake(STARTING_POSITION);
+        } else {
+            this.isGameOver = true;
+        }
+     
+    }
     
     private void checkCollectibles() {
         Iterator<Collectible> iterator = collectibles.iterator();
