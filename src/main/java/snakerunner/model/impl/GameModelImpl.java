@@ -204,7 +204,7 @@ public final class GameModelImpl implements GameModel {
 
     private void checkCollisions() {
     /* Collision logic */
-        Point2D<Integer,Integer> head= snake.getHead();
+       final Point2D<Integer,Integer> head= snake.getHead();
         if(snake.isCollidingWithItself()) {
             handleCollision();
             return;
@@ -215,7 +215,7 @@ public final class GameModelImpl implements GameModel {
             return;
         }
         if(doors != null) /* If the door is ≠ null */{
-            for (Door door : doors) {
+            for (final Door door : doors) {
                 if (!door.isOpen() && door.getPosition().equals(head)) { 
                 handleCollision();
                 return;
