@@ -12,10 +12,18 @@ import snakerunner.model.Door;
 import snakerunner.model.GameModel;
 import snakerunner.model.Snake;
 
-public class WorldControllerImpl implements WorldController {
+/**
+ * WoldControllerImpl define methods for Worldontroller'Interface.
+ */
+public final class WorldControllerImpl implements WorldController {
 
-    private GameModel gameModel;
+    private final GameModel gameModel;
 
+    /**
+     * WorldControllerImpl's Constructor.
+     * 
+     * @param gameModel GameModel.
+     */
     public WorldControllerImpl(final GameModel gameModel) {
         this.gameModel = gameModel;
     }
@@ -57,5 +65,4 @@ public class WorldControllerImpl implements WorldController {
     public Direction getDirection() {
         return gameModel.getSnake().getCurrentDirection();
     }
-    
 }

@@ -8,9 +8,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import snakerunner.audio.AudioPlayer;
 import snakerunner.controller.NavigationController;
-import snakerunner.graphics.impl.BasePanelImpl;
+import snakerunner.graphics.impl.AbstractBasePanel;
 
-public final class OptionPanel extends BasePanelImpl {
+/**
+ * OptionPanel define the OptionView for the application.
+ */
+public final class OptionPanel extends AbstractBasePanel {
 
     private static final long serialVersionUID = 1L;
     private static final String APPLY = "Apply";
@@ -22,8 +25,14 @@ public final class OptionPanel extends BasePanelImpl {
     private final JCheckBox checkbox;
     private final JLabel label;
 
+    /**
+     * Constructor OptionPanel.
+     * 
+     * @param navigationController NavigationController.
+     */
     public OptionPanel(final NavigationController navigationController) {
         super();
+        initPanel();
         this.navigationController = navigationController;
         checkbox = new JCheckBox();
         label = new JLabel(SOUND);

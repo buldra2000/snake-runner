@@ -16,14 +16,14 @@ public final class Main {
 
     /**
      * The entry point of the application.
-     * 
+     *
      * @param args the command line arguments (not used).
      */
     public static void main(final String[] args) {
         final MainFrame mainFrame = new MainFrameImpl();
         final GameModel gameModel = new GameModelImpl();
         final NavigationController navigationController = new NavigationControllerImpl(mainFrame, gameModel);
-        
+
         navigationController.init();
     }
 }

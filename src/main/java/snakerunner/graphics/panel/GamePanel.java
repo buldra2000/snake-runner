@@ -10,9 +10,12 @@ import snakerunner.controller.GameController;
 import snakerunner.controller.WorldController;
 import snakerunner.graphics.hud.BaseHUD;
 import snakerunner.graphics.hud.HUDFactory;
-import snakerunner.graphics.impl.BasePanelImpl;
+import snakerunner.graphics.impl.AbstractBasePanel;
 
-public final class GamePanel extends BasePanelImpl {
+/**
+ * GamePanel define the GameView when the user click "start".
+ */
+public final class GamePanel extends AbstractBasePanel {
 
     private static final long serialVersionUID = 1L;
     private static final String PAUSE = "Pause";
@@ -30,8 +33,14 @@ public final class GamePanel extends BasePanelImpl {
     private final JButton pause;
     private final JButton resume;
 
+    /**
+     * GamePanel Constructor.
+     * 
+     * @param controller GameController.
+     */
     public GamePanel(final GameController controller) {
         super();
+        initPanel();
         this.controller = controller;
         nPanel = new JPanel();
         sPanel = new JPanel();
@@ -52,23 +61,28 @@ public final class GamePanel extends BasePanelImpl {
         add(ePanel, BorderLayout.EAST);
         add(wPanel, BorderLayout.WEST);
         add(sPanel, BorderLayout.SOUTH);
-        nPanel.add((JLabel)timerView);
+        nPanel.add((JLabel) timerView);
         ePanel.add(pause);
         ePanel.add(resume);
-        wPanel.add((JLabel)lifeView);
+        wPanel.add((JLabel) lifeView);
         sPanel.add(Box.createVerticalGlue());
-        nPanel.add((JLabel)levelView);
-        nPanel.add((JLabel)scoreView);
+        nPanel.add((JLabel) levelView);
+        nPanel.add((JLabel) scoreView);
         this.addActionListeners();
     }
 
-    public void setWorldController(WorldController worldController) {
-    
+    /**
+     * Sets the worldController and initialize the gameBoardPanel.
+     * 
+     * @param worldController the worldController for game state.
+     */
+    public void setWorldController(final WorldController worldController) {
+
         if (gameBoardPanel == null) {
             gameBoardPanel = PanelFactory.createGameBoardPanel(worldController);
             add(gameBoardPanel, BorderLayout.CENTER);
         }
-    
+
         revalidate();
         repaint();
     }
@@ -84,23 +98,38 @@ public final class GamePanel extends BasePanelImpl {
         resume.addActionListener(e -> controller.resume());
     }
 
-    public void updateTimer(final int timeLeft) {
-        //timerView.setValue(timeLeft);
-        repaint();
-    }
-
+    /**
+     * Getter for TimerView.
+     * 
+     * @return TimerView.
+     */
     public BaseHUD getTimerView() {
         return timerView;
     }
 
+    /**
+     * Getter for ScoreView.
+     * 
+     * @return ScoreView.
+     */
     public BaseHUD getScoreView() {
         return scoreView;
     }
 
+    /**
+     * Getter for LevelView.
+     * 
+     * @return LevelView.
+     */
     public BaseHUD getLevelView() {
         return levelView;
     }
 
+    /**
+     * Getter for LifeView.
+     * 
+     * @return LifeView.
+     */
     public BaseHUD getLifeView() {
         return lifeView;
     }

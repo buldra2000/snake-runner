@@ -11,19 +11,27 @@ import snakerunner.model.GameModel;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-public class NavigationControllerImpl implements NavigationController, KeyListener {
-    
+/**
+ * NavigationControllerImpl define methods for NavigationController'Interface.
+ */
+public final class NavigationControllerImpl implements NavigationController, KeyListener {
+
     private final MainFrame mainFrame;
     private final GameModel gameModel;
     private GameController gameController;
     private BasePanel menuPanel;
     private BasePanel optionPanel;
 
+    /**
+     * Constructor for NavigationControllerImpl.
+     * 
+     * @param mainFrame main frame for the application.
+     * @param gameModel game model for the application.
+     */
     public NavigationControllerImpl(final MainFrame mainFrame, final GameModel gameModel) {
         this.mainFrame = mainFrame;
         this.gameModel = gameModel;
     }
-
 
     @Override
     public void init() {
@@ -58,8 +66,6 @@ public class NavigationControllerImpl implements NavigationController, KeyListen
         // Non necessario qui
     }
 
-    
-
     @Override
     public void startGame() {
         if (gameController == null) {
@@ -71,7 +77,7 @@ public class NavigationControllerImpl implements NavigationController, KeyListen
         final WorldController wc = new WorldControllerImpl(gameModel);
 
         final BasePanel gamePanel = PanelFactory.createGamePanel(gameController);
-        
+
         if (gamePanel instanceof final GamePanel gp) {
             gp.setWorldController(wc);
             gameController.setHUD(gp.getTimerView(), gp.getScoreView(), gp.getLevelView(), gp.getLifeView());
@@ -80,7 +86,7 @@ public class NavigationControllerImpl implements NavigationController, KeyListen
         mainFrame.setPanels(menuPanel, gamePanel, optionPanel);
         mainFrame.showGame();
         gameController.start();
-        
+
     }
 
     @Override

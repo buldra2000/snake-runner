@@ -3,9 +3,12 @@ package snakerunner.graphics.panel;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import snakerunner.controller.NavigationController;
-import snakerunner.graphics.impl.BasePanelImpl;
+import snakerunner.graphics.impl.AbstractBasePanel;
 
-public final class MenuPanel extends BasePanelImpl {
+/**
+ * MenuPanel define the MenuView for the application.
+ */
+public final class MenuPanel extends AbstractBasePanel {
 
     private static final long serialVersionUID = 1L;
     private static final String START = "Start";
@@ -16,8 +19,14 @@ public final class MenuPanel extends BasePanelImpl {
     private final JButton option;
     private final JButton exit;
 
+    /**
+     * Constructor for MenuPanel.
+     * 
+     * @param navigationController NavigationController.
+     */
     public MenuPanel(final NavigationController navigationController) {
         super();
+        initPanel();
         this.navigationController = navigationController;
         setLayoutPanel();
         start = createButton(START);

@@ -1,13 +1,10 @@
 package snakerunner.controller;
 
-import java.awt.event.KeyEvent;
-
 import snakerunner.graphics.hud.BaseHUD;
 
-
-//LinkedBlockingQueue -> thread safe
-//controller must not see Swing
-
+/**
+ * GameController for the game sequences.
+ */
 public interface GameController {
 
     /**
@@ -16,11 +13,19 @@ public interface GameController {
     void start();
 
     /**
-     * Pause Game (Model - Controller - View)
+     * Pause Game (Model - Controller - View).
      */
     void pause();
 
-    void setHUD(final BaseHUD timerView, final BaseHUD scoreView, final BaseHUD levelView, final BaseHUD lifeView);
+    /**
+     * Set the HUD components for view.
+     * 
+     * @param timerView for visualization the timer.
+     * @param scoreView for visualization the score.
+     * @param levelView for visualization the level.
+     * @param lifeView for visualization the lives.
+     */
+    void setHUD(BaseHUD timerView, BaseHUD scoreView, BaseHUD levelView, BaseHUD lifeView);
 
     /**
      * Resume game.
@@ -28,7 +33,7 @@ public interface GameController {
     void resume();
 
     /**
-     * Update gameLoop
+     * Update gameLoop.
      */
     void updateGame();
 
@@ -38,10 +43,4 @@ public interface GameController {
      * @param filepath path file levels.
      */
     void loadLevelFromFile(String filepath);
-
-    void keyPressed(KeyEvent e);
-
-    void keyTyped(KeyEvent e);
-
-    void keyReleased(KeyEvent e);
 }

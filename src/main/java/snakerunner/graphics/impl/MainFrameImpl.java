@@ -2,18 +2,17 @@ package snakerunner.graphics.impl;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.KeyListener;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
 import snakerunner.graphics.MainFrame;
 import snakerunner.graphics.panel.BasePanel;
 
-
+/**
+ * MainFrameImpl is the concrete class of the MainFrame'Interface.
+ */
 public final class MainFrameImpl extends JFrame implements MainFrame {
-    
+
     private static final long serialVersionUID = 1L;
     private static final String TITLE = "Snake Runner";
     private static final String WON_MESSAGE = "You Won!";
@@ -24,7 +23,9 @@ public final class MainFrameImpl extends JFrame implements MainFrame {
     private BasePanel gamePanel;
     private BasePanel optionPanel;
 
-
+    /**
+     * Constructor of MainFrameImpl.
+     */
     public MainFrameImpl() {
         super(TITLE);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -38,42 +39,45 @@ public final class MainFrameImpl extends JFrame implements MainFrame {
     }
 
     @Override
-    public void setPanels(final BasePanel menuPanel, final BasePanel gamePanel, final BasePanel optionPanel) {
-       this.menuPanel = menuPanel;
-       this.gamePanel = gamePanel;
-       this.optionPanel = optionPanel;
+    public void setPanels(final BasePanel menu, final BasePanel game, final BasePanel option) {
+       this.menuPanel = menu;
+       this.gamePanel = game;
+       this.optionPanel = option;
     }
 
+    /**
+     * Set automatically proportion of dimension MainFrame.
+     */
     private void setDimensionFrame() {
         final Dimension screensize = Toolkit.getDefaultToolkit().getScreenSize();
-        final int width = (int)(screensize.width * PROPORTION);
-        final int height = (int)(screensize.height * PROPORTION);
-        setSize(width,height);
+        final int width = (int) (screensize.width * PROPORTION);
+        final int height = (int) (screensize.height * PROPORTION);
+        setSize(width, height);
     }
 
     @Override
     public void showMenu() {
-        setContentPane((JPanel)menuPanel);
+        setContentPane((JPanel) menuPanel);
         revalidate();
         repaint();
     }
 
     @Override
     public void showGame() {
-        setContentPane((JPanel)gamePanel);
+        setContentPane((JPanel) gamePanel);
         revalidate();
         repaint();
     }
 
     @Override
     public void showOption() {
-        setContentPane((JPanel)optionPanel);
+        setContentPane((JPanel) optionPanel);
         revalidate();
         repaint();
     }
 
     @Override
-    public void won(){
+    public void won() {
         JOptionPane.showMessageDialog(this, WON_MESSAGE, TITLE, JOptionPane.INFORMATION_MESSAGE);
         showMenu();
     }
@@ -93,11 +97,10 @@ public final class MainFrameImpl extends JFrame implements MainFrame {
     public void refresh() {
         this.repaint();
     }
-
+    /*
     @Override
-    public void addKeyListener(KeyListener l) {
+    public void addKeyListener(final KeyListener l) {
     super.addKeyListener(l);
     }
- 
-   
+    */
 }

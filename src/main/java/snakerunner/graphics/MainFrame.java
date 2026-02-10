@@ -4,51 +4,65 @@ import snakerunner.graphics.panel.BasePanel;
 //for the keys
 import java.awt.event.KeyListener;
 
-
+/**
+ * MainFrame Interface for the MainView.
+ */
 public interface MainFrame {
     //test
-    
+
+    /**
+     * Adds the specified key listener to receive key events from this component.
+     * 
+     * @param l the key listener to be added.
+     */
     void addKeyListener(KeyListener l);
 
     /**
-     * Show Frame
+     * Show Frame.
      */
     void display();
 
     /**
-     * Show MenuPanel
+     * Show MenuPanel.
      */
     void showMenu();
 
     /**
-     * Show GamePanel
+     * Show GamePanel.
      */
     void showGame();
 
     /**
-     * Set Panel
-     * @param menuPanel Set MenuPanel
-     * @param gamePanel Set GamePanel
-     * @param optionPanel Set OptionPanel
+     * Set Panel.
+     * 
+     * @param menuPanel Set MenuPanel.
+     * @param gamePanel Set GamePanel.
+     * @param optionPanel Set OptionPanel.
      */
     void setPanels(BasePanel menuPanel, BasePanel gamePanel, BasePanel optionPanel);
 
     /**
-     * Show OptionPanel
+     * Show OptionPanel.
      */
     void showOption();
 
     /**
-     * Show JDialog "You won!"
+     * Show JDialog "You won!".
      */
     void won();
 
     /**
-     * Show JDialog "You lose!"
+     * Show JDialog "You lose!".
      */
     void lose();
 
+    /**
+     * Show JDialog when level ends.
+     */
     void levelComplete();
 
+    /**
+     * Update.
+     */
     void refresh();
 }

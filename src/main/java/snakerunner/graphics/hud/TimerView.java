@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
-/*TimerView is a HUD component and is used to show the remaining game time in GamePanel*/
-public final class TimerView extends BaseView {
-    
+/**
+ * TimerView is a HUD component and is used to show the remaining game time in GamePanel.
+ */
+public final class TimerView extends AbstractBaseView {
+
     private static final long serialVersionUID = 1L;
     private static final int WIDTH = 60;
     private static final int HEIGHT = 30;
@@ -17,19 +19,17 @@ public final class TimerView extends BaseView {
 
     private int timeLeft;
 
+    /**
+     * Constructor for TimerView.
+     */
     public TimerView() {
         setOpaque(false);
         setPreferredSize(new Dimension(WIDTH, HEIGHT));
     }
 
     @Override
-    public void setValue(int value) {
+    public void setValue(final int value) {
         this.timeLeft = value;
-        repaint();
-    }
-
-    public void setTimeLeft(final int timeLeft) {
-        this.timeLeft = timeLeft;
         repaint();
     }
 
@@ -45,6 +45,4 @@ public final class TimerView extends BaseView {
         g.setColor(Color.BLACK);
         g.drawString(timerText, X, Y);
     }
-
-
 }
