@@ -48,5 +48,7 @@ public interface MainFrame {
      */
     void lose();
 
+    void levelComplete();
+
     void refresh();
 }

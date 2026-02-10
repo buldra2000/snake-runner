@@ -18,6 +18,7 @@ public final class MainFrameImpl extends JFrame implements MainFrame {
     private static final String TITLE = "Snake Runner";
     private static final String WON_MESSAGE = "You Won!";
     private static final String LOSE_MESSAGE = "You Lose!";
+    private static final String LEVEL_COMPLETE = "Level Complete! Get ready for the next level!";
     private static final double PROPORTION = 0.5;
     private BasePanel menuPanel;
     private BasePanel gamePanel;
@@ -81,6 +82,11 @@ public final class MainFrameImpl extends JFrame implements MainFrame {
     public void lose() {
         JOptionPane.showMessageDialog(this, LOSE_MESSAGE, TITLE, JOptionPane.INFORMATION_MESSAGE);
         showMenu();
+    }
+
+    @Override
+    public void levelComplete() {
+        JOptionPane.showMessageDialog(this, LEVEL_COMPLETE, TITLE, JOptionPane.INFORMATION_MESSAGE);
     }
 
     @Override

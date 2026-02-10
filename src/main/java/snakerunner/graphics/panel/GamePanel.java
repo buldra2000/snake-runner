@@ -9,10 +9,7 @@ import javax.swing.JPanel;
 import snakerunner.controller.GameController;
 import snakerunner.controller.WorldController;
 import snakerunner.graphics.hud.BaseHUD;
-import snakerunner.graphics.hud.LevelView;
-import snakerunner.graphics.hud.LifeView;
-import snakerunner.graphics.hud.ScoreView;
-import snakerunner.graphics.hud.TimerView;
+import snakerunner.graphics.hud.HUDFactory;
 import snakerunner.graphics.impl.BasePanelImpl;
 
 public final class GamePanel extends BasePanelImpl {
@@ -40,10 +37,10 @@ public final class GamePanel extends BasePanelImpl {
         sPanel = new JPanel();
         ePanel = new JPanel();
         wPanel = new JPanel();
-        timerView = new TimerView();
-        scoreView = new ScoreView();
-        levelView = new LevelView();
-        lifeView = new LifeView();
+        timerView = HUDFactory.createTimerView();
+        scoreView = HUDFactory.createScoreView();
+        levelView = HUDFactory.createLevelView();
+        lifeView = HUDFactory.createLifeView();
         setLayoutPanel();
         pause = createButton(PAUSE);
         resume = createButton(RESUME);

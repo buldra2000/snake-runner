@@ -22,7 +22,6 @@ public class NavigationControllerImpl implements NavigationController, KeyListen
     public NavigationControllerImpl(final MainFrame mainFrame, final GameModel gameModel) {
         this.mainFrame = mainFrame;
         this.gameModel = gameModel;
-
     }
 
 

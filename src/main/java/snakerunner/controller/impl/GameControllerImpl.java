@@ -224,6 +224,8 @@ public class GameControllerImpl implements GameController, KeyListener {
             currentLevel = 1;
             mainFrame.won();
             state = StateGame.MENU;
+        } else {
+            mainFrame.levelComplete();
         }
     }
 
