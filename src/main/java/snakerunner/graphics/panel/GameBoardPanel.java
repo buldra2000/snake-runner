@@ -22,9 +22,6 @@ import snakerunner.model.SnakeSegment;
 public final class GameBoardPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private static final int GRID_COLS = 37;
-    private static final int GRID_ROWS = 29;
-    private static final int CELL = 15;
     private final WorldController worldController;
     private Image foodImage;
     private Image keyImage;
@@ -121,19 +118,27 @@ public final class GameBoardPanel extends JPanel {
     private void drawGrid(final Graphics g) {
         g.setColor(Color.BLACK);
 
-        final int cols = GRID_COLS;
-        final int rows = GRID_ROWS;
+        final int cellSize = getCellSize();
 
-        final int gridWidth = cols * CELL;
-        final int gridHeight = rows * CELL;
+        final int cols = worldController.getLevel().getGrid().getWidth();
+        final int rows = worldController.getLevel().getGrid().getHeight();
 
-        for (int x = 0; x <= cols; x++) {
-            g.drawLine(x * CELL, 0, x * CELL, gridHeight);
+        final int gridWidth = cols * cellSize;
+        final int gridHeight = rows * cellSize;
+
+        for (int x = 0; x <= getWidth(); x++) {
+            g.drawLine(x * cellSize, 0, x * cellSize, gridHeight);
         }
 
-        for (int y = 0; y <= rows; y++) {
-            g.drawLine(0, y * CELL, gridWidth, y * CELL);
+        for (int y = 0; y <= getHeight(); y++) {
+            g.drawLine(0, y * cellSize, gridWidth, y * cellSize);
         }
+    }
+
+    private int getCellSize() {
+        final int cols = worldController.getLevel().getGrid().getWidth();
+        final int rows = worldController.getLevel().getGrid().getHeight();
+        return Math.min(getWidth() / cols, getHeight() / rows);
     }
 
     /**
@@ -153,8 +158,8 @@ public final class GameBoardPanel extends JPanel {
         for (int i = 0; i < body.size(); i++) {
             final SnakeSegment segment = body.get(i);
             final Point2D<Integer, Integer> pos = segment.pos;
-            final int x = pos.getX() * CELL;
-            final int y = pos.getY() * CELL;
+            final int x = pos.getX() * getCellSize();
+            final int y = pos.getY() * getCellSize();
 
             final Image segmentImage;
 
@@ -168,7 +173,7 @@ public final class GameBoardPanel extends JPanel {
                 segmentImage = getBodyImage(prevPos, pos);
             }
 
-                g.drawImage(segmentImage, x, y, CELL, CELL, this);
+                g.drawImage(segmentImage, x, y, getCellSize(), getCellSize(), this);
         }
     }
 
@@ -265,9 +270,9 @@ public final class GameBoardPanel extends JPanel {
         g.setColor(Color.RED);
 
         for (final Point2D<Integer, Integer> p : worldController.getObstacles()) {
-            final int x = p.getX() * CELL;
-            final int y = p.getY() * CELL;
-            g.drawImage(obstacleImage, x, y, CELL, CELL, this);
+            final int x = p.getX() * getCellSize();
+            final int y = p.getY() * getCellSize();
+            g.drawImage(obstacleImage, x, y, getCellSize(), getCellSize(), this);
         }
     }
 
@@ -279,16 +284,16 @@ public final class GameBoardPanel extends JPanel {
     private void drawCollectibles(final Graphics g) {
        for (final Collectible collectible : worldController.getCollectibles()) {
         final Point2D<Integer, Integer> p = collectible.getPosition();
-        final int x = p.getX() * CELL;
-        final int y = p.getY() * CELL;
+        final int x = p.getX() * getCellSize();
+        final int y = p.getY() * getCellSize();
 
         switch (collectible.getType()) {
-            case FOOD -> g.drawImage(foodImage, x, y, CELL, CELL, this);
-            case CLOCK -> g.drawImage(clockImage, x, y, CELL, CELL, this);
-            case KEY -> g.drawImage(keyImage, x, y, CELL, CELL, this);
-            case LIFE_BOOST -> g.drawImage(mushroomImage, x, y, CELL, CELL, this);
-            case FLAG -> g.drawImage(flagImage, x, y, CELL, CELL, this);
-            case BOMB -> g.drawImage(bombImage, x, y, CELL, CELL, this);
+            case FOOD -> g.drawImage(foodImage, x, y, getCellSize(), getCellSize(), this);
+            case CLOCK -> g.drawImage(clockImage, x, y, getCellSize(), getCellSize(), this);
+            case KEY -> g.drawImage(keyImage, x, y, getCellSize(), getCellSize(), this);
+            case LIFE_BOOST -> g.drawImage(mushroomImage, x, y, getCellSize(), getCellSize(), this);
+            case FLAG -> g.drawImage(flagImage, x, y, getCellSize(), getCellSize(), this);
+            case BOMB -> g.drawImage(bombImage, x, y, getCellSize(), getCellSize(), this);
             // default -> {
             //     g.setColor(Color.YELLOW);
             //     g.fillOval(x, y, CELL, CELL);
@@ -311,13 +316,13 @@ public final class GameBoardPanel extends JPanel {
 
         for (final Door door : doors) {
             final Point2D<Integer, Integer> p = door.getPosition();
-            final int x = p.getX() * CELL;
-            final int y = p.getY() * CELL;
+            final int x = p.getX() * getCellSize();
+            final int y = p.getY() * getCellSize();
 
             final Image doorImage = door.isOpen() ? doorOpen : doorClose;
 
             if (doorImage != null) {
-                g.drawImage(doorImage, x, y, CELL, CELL, this);
+                g.drawImage(doorImage, x, y, getCellSize(), getCellSize(), this);
             }
 
         }

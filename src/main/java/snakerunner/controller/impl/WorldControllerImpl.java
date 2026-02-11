@@ -10,6 +10,7 @@ import snakerunner.model.Collectible;
 import snakerunner.model.Direction;
 import snakerunner.model.Door;
 import snakerunner.model.GameModel;
+import snakerunner.model.Level;
 import snakerunner.model.Snake;
 
 /**
@@ -54,5 +55,10 @@ public final class WorldControllerImpl implements WorldController {
     @Override
     public Direction getDirection() {
         return gameModel.getSnake().getCurrentDirection();
+    }
+
+    @Override
+    public Level getLevel() {
+        return gameModel.getLevel();
     }
 }

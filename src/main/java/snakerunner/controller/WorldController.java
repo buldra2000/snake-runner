@@ -7,6 +7,7 @@ import snakerunner.commons.Point2D;
 import snakerunner.model.Collectible;
 import snakerunner.model.Direction;
 import snakerunner.model.Door;
+import snakerunner.model.Level;
 import snakerunner.model.Snake;
 
 /**
@@ -49,5 +50,7 @@ public interface WorldController {
      * @return the current direction of the snake.
      */
     Direction getDirection();
+
+    Level getLevel();
 
 }

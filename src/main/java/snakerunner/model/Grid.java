@@ -5,7 +5,6 @@ import snakerunner.commons.Point2D;
 /**
  * Interface representing the grid of the game.
  */
-@FunctionalInterface
 public interface Grid {
     /**
      * Checks if the given position is inside the grid boundaries.
@@ -14,4 +13,9 @@ public interface Grid {
      * @return true if the position is inside the grid, false otherwise.
      */
     boolean isInsideGrid(Point2D<Integer, Integer> position);
+
+    int getWidth();
+
+    int getHeight();
 }
+
