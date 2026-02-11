@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import snakerunner.model.LevelData;
+import snakerunner.model.VictoryCondition;
 import snakerunner.model.impl.LevelDataImpl;
 
 public final class TestLevels {
@@ -14,7 +15,7 @@ public final class TestLevels {
         return new LevelDataImpl(
             Set.of(), // nessun ostacolo
             List.of(),
-            null
-        );
+            null,
+            VictoryCondition.COLLECT_ALL_FOOD );
     }
 }

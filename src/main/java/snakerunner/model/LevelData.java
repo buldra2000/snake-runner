@@ -30,5 +30,5 @@ public interface LevelData {
      */
     List<Door> getDoors();
 
-    VictoryCondition geVictoryCondition();
+    VictoryCondition getVictoryCondition();
 }

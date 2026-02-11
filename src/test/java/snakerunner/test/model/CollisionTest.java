@@ -4,6 +4,7 @@ import snakerunner.commons.Point2D;
 import snakerunner.model.Obstacle;
 import snakerunner.model.Collectible;
 import snakerunner.model.LevelData;
+import snakerunner.model.VictoryCondition;
 import snakerunner.model.Direction;
 import snakerunner.model.Snake;
 import snakerunner.model.impl.Key;
@@ -137,6 +138,11 @@ class CollisionTest {
     @Override
     public List<Collectible> getCollectibles() {
         return collectibles;
+    }
+
+    @Override
+    public VictoryCondition getVictoryCondition() {
+        return VictoryCondition.COLLECT_ALL_FOOD;
     }
 
     public void addDoor(int x, int y) {
