@@ -76,18 +76,18 @@ public final class LevelLoader {
                 case "obstacles" -> obstacles.add(p);
                 case "collectibles" -> {
                     final String type = parts[2].trim().toUpperCase();
-                    
+
                     switch (type) {
                         case "FOOD" -> collectibles.add(new FoodImpl(p));
-                        
+
                         case "CLOCK" -> collectibles.add(new Clock(p));
-                        
+
                         case "KEY" -> collectibles.add(new Key(p));
-                        
+
                         case "LIFE_BOOST" -> collectibles.add(new LifeBoost(p));
-                        
+
                         case "FLAG" -> collectibles.add(new Flag(p));
-                        
+
                         default -> throw new IOException("Unknown collectible type: " + type);
                     }
                 }
@@ -98,9 +98,8 @@ public final class LevelLoader {
             }
         }
 
-        
         VictoryCondition victoryCondition = VictoryCondition.COLLECT_ALL_FOOD;
-        for (final Collectible c : collectibles ) {
+        for (final Collectible c : collectibles) {
             if (c.getType() == CollectibleType.FLAG) {
                 victoryCondition = VictoryCondition.COLLECT_FLAG;
                 break;

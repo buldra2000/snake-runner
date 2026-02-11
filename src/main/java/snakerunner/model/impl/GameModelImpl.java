@@ -258,7 +258,7 @@ public final class GameModelImpl implements GameModel {
             this.isGameOver = true;
         }
     }
-    
+
     private void checkCollectibles() {
         final Iterator<Collectible> iterator = collectibles.iterator();
         final Point2D<Integer, Integer> snakeHead = snake.getHead();
