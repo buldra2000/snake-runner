@@ -1,14 +1,14 @@
 package snakerunner.model;
 
 /**
- * MISSING JAVADOC.
+ * The Entity class represents a generic entity in the Snake Runner game.
  */
 public class Entity {
     protected int x;
     protected int y;
 
     /**
-     * MISSING JAVADOC.
+     * generate the entity.
      */
     public void generate() {
 

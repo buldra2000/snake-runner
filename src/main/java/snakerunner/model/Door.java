@@ -10,10 +10,10 @@ public class Door extends Obstacle {
     private boolean open; /* Checking if the door is open */
 
     /**
-     * MISSING JAVADOC.
+     * Constructor for the Door class, which initializes the door's position and sets it to closed by default.
      * 
-     * @param x MISSING JAVADOC.
-     * @param y MISSING JAVADOC.
+     * @param x coordinate x of the door's position in the grid.
+     * @param y coordinate y of the door's position in the grid.
      */
     public Door(final int x, final int y) {
         super(x, y, 1, 1); /* Default size is 1x1 */
@@ -22,18 +22,19 @@ public class Door extends Obstacle {
     }
 
     /**
-     * Getter.
+     * checking if the door is open or not.
      * 
-     * @return MISSING JAVADOC.
+     * @return whether the door is open or not.
      */
     public boolean isOpen() {
         return open;
     }
 
     /**
-     * Setter.
+     * setting the door to open or closed.
      * 
-     * @param open MISSING JAVADOC.
+     * @param open the new state of the door, 
+     * true for open and false for closed.
      */
     public void setOpen(final boolean open) {
         this.open = open;
@@ -42,7 +43,7 @@ public class Door extends Obstacle {
     /**
      * Getting door's positions.
      * 
-     * @return MISSING JAVADOC.
+     * @return a Point2D representing the (x, y) coordinates of the door.
      */
     public Point2D<Integer, Integer> getPosition() {
     return new Point2D<>(getX(), getY());

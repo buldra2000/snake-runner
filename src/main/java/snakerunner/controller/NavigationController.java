@@ -27,7 +27,7 @@ public interface NavigationController {
     void startGame();
 
     /**
-     * Show Tutorial
+     * Show Tutorial.
      */
     void onTutorial();
 

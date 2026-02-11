@@ -6,7 +6,7 @@ import java.util.Set;
 import snakerunner.commons.Point2D;
 
 /**
- * MISSING JAVADOC.
+ * The Obstacle class represents an obstacle in the Snake Runner game.
  */
 public class Obstacle extends Entity {
     /* Dimensions in grid */
@@ -16,10 +16,10 @@ public class Obstacle extends Entity {
     /**
      * Obstacle's inital positions and dimensions.
      * 
-     * @param x MISSING JAVADOC.
-     * @param y MISSING JAVADOC.
-     * @param width MISSING JAVADOC.
-     * @param height MISSING JAVADOC.
+     * @param x the x coordinate of the obstacle.
+     * @param y the y coordinate of the obstacle.
+     * @param width the width of the obstacle in grid units.
+     * @param height the height of the obstacle in grid units.
      */
     public Obstacle(final int x, final int y, final int width, final int height) {
         this.x = x;
@@ -31,7 +31,7 @@ public class Obstacle extends Entity {
     /**
      * Getter Width.
      * 
-     * @return MISSING JAVADOC.
+     * @return the width of the obstacle in grid units.
      */
     public int getWidth() {
         return width;
@@ -40,7 +40,7 @@ public class Obstacle extends Entity {
     /**
      * Getter Height.
      * 
-     * @return MISSING JAVADOC.
+     * @return the height of the obstacle in grid units.
      */
     public int getHeight() {
         return height;
@@ -49,9 +49,9 @@ public class Obstacle extends Entity {
     /**
      * We check if targetX is between x and x + width and targetY is between y and y + height (the area).
      * 
-     * @param targetX MISSING JAVADOC.
-     * @param targetY MISSING JAVADOC.
-     * @return MISSING JAVADOC.
+     * @param targetX the x coordinate of the target point.
+     * @param targetY the y coordinate of the target point.
+     * @return true if the target point is within the obstacle's boundaries, false otherwise.
      */
     public boolean isHit(final int targetX, final int targetY) {
      return targetX >= this.x 
@@ -64,7 +64,7 @@ public class Obstacle extends Entity {
     /**
      * We use this method to get the occupied positions by transforming them into a set.
      * 
-     * @return MISSING JAVADOC.
+     * @return a set of occupied positions.
      */
     public Set<Point2D<Integer, Integer>> getOccupiedPositions() {
         final Set<Point2D<Integer, Integer>> positions = new HashSet<>();

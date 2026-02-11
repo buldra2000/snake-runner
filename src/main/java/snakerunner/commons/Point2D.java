@@ -60,12 +60,12 @@ public class Point2D<X, Y> {
     /**
      * Sets the X and Y coordinates of this point.
      * 
-     * @param x The new X-coordinate.
-     * @param y The new Y-coordinate.
+     * @param newX The new X-coordinate.
+     * @param newY The new Y-coordinate.
      */
-    public void set(final X x, final Y y) {
-        this.x = x;
-        this.y = y;
+    public void set(final X newX, final Y newY) {
+        this.x = newX;
+        this.y = newY;
     }
 
     /**

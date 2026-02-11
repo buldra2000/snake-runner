@@ -1,8 +1,8 @@
 package snakerunner.model;
 
-import java.util.List;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 
 import snakerunner.commons.Point2D;
 
@@ -20,7 +20,7 @@ import snakerunner.commons.Point2D;
 //}
 
 /**
- * MISSING JAVADOC.
+ * The Snake class represents the player's snake in the Snake Runner game.
  */
 public final class Snake {
 
@@ -29,9 +29,9 @@ public final class Snake {
     private Direction currentDirection = Direction.RIGHT; //initial direction
 
     /**
-     * MISSING JAVADOC.
+     * Constructs a Snake object with the specified starting position.
      * 
-     * @param startPosition MISSING JAVADOC.
+     * @param startPosition The starting position of the snake's head.
      */
     public Snake(final Point2D<Integer, Integer> startPosition) {
 
@@ -56,10 +56,10 @@ public final class Snake {
 
         //calculates new position base on where we are going
         switch (currentDirection) {
-            case UP: nextY -= 1; break;
-            case DOWN: nextY += 1; break;
-            case LEFT: nextX -= 1; break;
-            case RIGHT: nextX += 1; break;
+            case UP -> nextY -= 1;
+            case DOWN -> nextY += 1;
+            case LEFT -> nextX -= 1;
+            case RIGHT -> nextX += 1;
         }
 
         //we add the new piece on top of the list (becomes the new head)
@@ -75,7 +75,7 @@ public final class Snake {
     /**
      * change direction so it doesn't turn 180 degrees.
      * 
-     * @param d MISSING JAVADOC.
+     * @param d the new direction of the snake.
      */
     public void setDirection(final Direction d) {
         if (d == null) {
@@ -100,9 +100,9 @@ public final class Snake {
     }
 
     /**
-     * MISSING JAVADOC.
+     * returns the current direction of the snake.
      * 
-     * @return MISSING JAVADOC.
+     * @return the current direction of the snake.
      */
     public Direction getCurrentDirection() {
         return currentDirection;
@@ -111,7 +111,7 @@ public final class Snake {
     /**
      * returns the head position.
      * 
-     * @return MISSING JAVADOC.
+     * @return the head position of the snake.
      */
     public Point2D<Integer, Integer> getHead() {
         return body.getFirst().pos;
@@ -120,7 +120,7 @@ public final class Snake {
     /**
      * Return the list of the segment for the view to draw.
      * 
-     * @return MISSING JAVADOC.
+     * @return the list of snake segments.
      */
     public List<SnakeSegment> getFullBody() {
         return Collections.unmodifiableList(body);
@@ -129,7 +129,7 @@ public final class Snake {
     /**
      * collision with itself.
      * 
-     * @return MISSING JAVADOC.
+     * @return true if the snake is colliding with itself, false otherwise.
      */
     public boolean isCollidingWithItself() {
         final Point2D<Integer, Integer> head = body.getFirst().pos;
@@ -144,8 +144,7 @@ public final class Snake {
     }
 
     //update logics
-    //this method decides what each piece should be
-
+    //this method decides what each piece should be.
     private void updateLogic() {
         if (body.isEmpty()) {
             return;

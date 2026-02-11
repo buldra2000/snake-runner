@@ -19,7 +19,7 @@ public final class LevelDataImpl implements LevelData {
     private final Set<Point2D<Integer, Integer>> obstacles;
     private final List<Collectible> collectibles;
     private final List<Door> doors;
-    private final  VictoryCondition victoryCondition;
+    private final VictoryCondition victoryCondition;
 
     /**
      * Constructs a LevelDataImpl with the specified obstacles and collectibles.
@@ -33,7 +33,6 @@ public final class LevelDataImpl implements LevelData {
                         final List<Collectible> collectibles, 
                         final List<Door> doors,
                         final VictoryCondition victoryCondition) {
-                            
         this.obstacles = new HashSet<>(obstacles);
         this.collectibles = new ArrayList<>(collectibles);
         this.doors = new ArrayList<>(doors);
@@ -66,7 +65,6 @@ public final class LevelDataImpl implements LevelData {
         return new ArrayList<>(doors);
     }
 
-    
     @Override
     public VictoryCondition getVictoryCondition() {
         return victoryCondition;

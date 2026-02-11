@@ -27,6 +27,7 @@ public final class GameControllerImpl implements GameController, KeyListener {
 
     private static final int MAX_LEVEL = 4;
     private static final int INITIAL_LEVEL = 1;
+    private static final int INITIAL_TIME = 500;
     private StateGame state;
     private Timer gameLoopTimer;
     private BaseHUD timerView;
@@ -100,8 +101,7 @@ public final class GameControllerImpl implements GameController, KeyListener {
      */
     @Override
     public void start() {
-        gameModel.resetLives();
-        timeLeft = 500;
+        timeLeft = INITIAL_TIME;
         loadCurrentLevel();
         if (mainFrame instanceof javax.swing.JFrame) {
         ((javax.swing.JFrame) mainFrame).requestFocusInWindow();

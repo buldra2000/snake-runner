@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import snakerunner.commons.Point2D;
@@ -47,17 +48,17 @@ public final class LevelLoader {
                 continue;
             }
 
-            if (line.equalsIgnoreCase("[Obstacles]")) {
+            if ("[Obstacles]".equalsIgnoreCase(line)) {
                 section = "obstacles";
                 continue;
             }
 
-            if (line.equalsIgnoreCase("[Collectibles]")) {
+            if ("[Collectibles]".equalsIgnoreCase(line)) {
                 section = "collectibles";
                 continue;
             }
 
-            if (line.equalsIgnoreCase("[Doors]")) { //TEMPORARY FIX, USE TO TEST gameBoardPanel drawDoors()
+            if ("[Doors]".equalsIgnoreCase(line)) { //TEMPORARY FIX, USE TO TEST gameBoardPanel drawDoors()
                 section = "doors";
                 continue;
             }
@@ -72,32 +73,34 @@ public final class LevelLoader {
 
             final Point2D<Integer, Integer> p = new Point2D<>(x, y);
 
-            if (section.equals("obstacles")) {
-                obstacles.add(p);
-            } else if (section.equals("collectibles")) {
-                final String type = parts[2].trim().toUpperCase();
+            switch (section) {
+                case "obstacles" -> obstacles.add(p);
+                case "collectibles" -> {
+                    final String type = parts[2].trim().toUpperCase(Locale.ROOT);
 
-                switch (type) {
-                    case "FOOD" -> collectibles.add(new FoodImpl(p));
+                    switch (type) {
+                        case "FOOD" -> collectibles.add(new FoodImpl(p));
 
-                    case "CLOCK" -> collectibles.add(new Clock(p));
+                        case "CLOCK" -> collectibles.add(new Clock(p));
 
-                    case "KEY" -> collectibles.add(new Key(p));
+                        case "KEY" -> collectibles.add(new Key(p));
 
-                    case "LIFE_BOOST" -> collectibles.add(new LifeBoost(p));
+                        case "LIFE_BOOST" -> collectibles.add(new LifeBoost(p));
 
-                    case "FLAG" -> collectibles.add(new Flag(p));
+                        case "FLAG" -> collectibles.add(new Flag(p));
 
-                    default -> throw new IOException("Unknown collectible type: " + type);
+                        default -> throw new IOException("Unknown collectible type: " + type);
+                    }
                 }
-            } else if (section.equals("doors")) { //TEMPORARY FIX, USE TO TEST gameBoardPanel drawDoors()
-                doors.add(new Door(x, y));
+                case "doors" -> //TEMPORARY FIX, USE TO TEST gameBoardPanel drawDoors()
+                    doors.add(new Door(x, y));
+                default -> {
+                }
             }
         }
 
-        
         VictoryCondition victoryCondition = VictoryCondition.COLLECT_ALL_FOOD;
-        for (final Collectible c : collectibles ) {
+        for (final Collectible c : collectibles) {
             if (c.getType() == CollectibleType.FLAG) {
                 victoryCondition = VictoryCondition.COLLECT_FLAG;
                 break;

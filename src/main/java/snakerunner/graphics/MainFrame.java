@@ -1,8 +1,8 @@
 package snakerunner.graphics;
 
-import snakerunner.graphics.panel.BasePanel;
-//for the keys
 import java.awt.event.KeyListener;
+
+import snakerunner.graphics.panel.BasePanel;
 
 /**
  * MainFrame Interface for the MainView.
@@ -33,7 +33,7 @@ public interface MainFrame {
     void showGame();
 
     /**
-     * Show TUtorial
+     * Show Tutorial.
      */
     void showTutorial();
 

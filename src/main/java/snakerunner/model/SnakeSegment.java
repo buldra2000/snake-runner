@@ -3,12 +3,12 @@ package snakerunner.model;
 import snakerunner.commons.Point2D;
 
 /**
- * MISSING JAVADOC.
+ * The SnakeSegment class represents a single segment of the snake.
  */
  public final class SnakeSegment {
 
     /**
-     * MISSING JAVADOC.
+     * Enum representing the type of a snake segment.
      */
     public enum SegmentType {
         HEAD,
@@ -27,13 +27,13 @@ import snakerunner.commons.Point2D;
         public final Direction toTail;
 
         /**
-         * MISSING JAVADOC.
+         * Constructs a SnakeSegment with the specified position, type, facing direction, and directional information.
          * 
-         * @param pos MISSING JAVADOC.
-         * @param type MISSING JAVADOC.
-         * @param facing MISSING JAVADOC.
-         * @param toHead MISSING JAVADOC.
-         * @param toTail MISSING JAVADOC.
+         * @param pos The position of the snake segment.
+         * @param type The type of the snake segment.
+         * @param facing The direction the head is facing (if this is a head segment).
+         * @param toHead The direction towards the previous segment closer to the head.
+         * @param toTail The direction towards the next segment closer to the tail.
          */
         public SnakeSegment(final Point2D<Integer, Integer> pos, final SegmentType type,
                             final Direction facing, final Direction toHead, final Direction toTail) {

@@ -18,35 +18,36 @@ public interface GameModel {
     /**
      * Checks if the game is over.
      * 
-     * @return MISSING JAVADOC.
+     * @return true if the game is over, false otherwise.
      */
     boolean isGameOver();
 
     /**
      * Loads a level from the given data.
      *
-     * @param data MISSING JAVADOC.
+     * @param data The LevelData object 
+     * containing the level information to be loaded.
      */
     void loadLevel(LevelData data);
 
     /**
      * Returns the snake in the game.
      *
-     * @return MISSING JAVADOC.
+     * @return The Snake object representing the player's snake.
      */
     Snake getSnake();
 
     /**
      * Returns the list of collectibles in the game.
      *
-     * @return MISSING JAVADOC.
+     * @return An unmodifiable list of Collectible objects.
      */
     List<Collectible> getCollectibles();
 
     /**
      * Returns the current level.
      *
-     * @return MISSING JAVADOC.
+     * @return The current Level object.
      */
     Level getLevel();
 
@@ -64,10 +65,15 @@ public interface GameModel {
      */
     boolean isLevelCompleted();
 
-    /* "Flags" the current level as completed */
+    /**
+     * Completes the current level and prepares for the next level.
+     * This method is called when the player meets the victory condition for the current level.
+     */
     void completeLevel();
-    
-    /** Adds points to the player's score. 
+
+    /** 
+     * Adds points to the player's score. 
+     * 
      * @param points The number of points to add to the score.
      */
     void addScore(int points);
@@ -104,12 +110,12 @@ public interface GameModel {
     void openDoor();
 
     /**
-     * Reset lives.
-     */
-    void resetLives();
-
-    /**
      * Resets the game state to the initial conditions. This method is called when the game is over to prepare for a new game.
      */
     void resetState();
+
+    /**
+     * Add a life to the snake after consuming a mushroom(Life Boost).
+     */
+    void addLife();
 }

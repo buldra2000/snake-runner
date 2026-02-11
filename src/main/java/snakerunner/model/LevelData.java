@@ -30,5 +30,10 @@ public interface LevelData {
      */
     List<Door> getDoors();
 
+    /**
+     * Returns the victory condition for the level, which determines how the player can complete the level.
+     * 
+     * @return the victory condition for the level.
+     */
     VictoryCondition getVictoryCondition();
 }

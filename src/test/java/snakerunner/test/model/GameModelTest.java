@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import snakerunner.model.GameModel;
 import snakerunner.model.impl.GameModelImpl;
 
-
 class GameModelTest {
 
     private final GameModel gameModel = new GameModelImpl();
@@ -18,9 +17,9 @@ class GameModelTest {
      */
     @Test
     void eatingFoodIncreasesScore() {
-        int scoreBefore = gameModel.getScore();
+        final int scoreBefore = gameModel.getScore();
 
-        gameModel.addScore( 10); 
+        gameModel.addScore(10); 
 
         assertTrue(gameModel.getScore() > scoreBefore);
     }
@@ -30,7 +29,7 @@ class GameModelTest {
      */
     @Test
     void clockSlowsGame() {
-        int speedBefore = gameModel.getSpeed();
+        final int speedBefore = gameModel.getSpeed();
 
         gameModel.applySlowEffect(); 
 
