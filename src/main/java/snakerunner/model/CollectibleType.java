@@ -8,5 +8,6 @@ public enum CollectibleType {
     CLOCK,
     KEY,
     LIFE_BOOST,
-    FLAG
+    FLAG,
+    BOMB
 }

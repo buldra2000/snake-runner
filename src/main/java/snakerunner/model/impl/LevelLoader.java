@@ -89,6 +89,8 @@ public final class LevelLoader {
 
                         case "FLAG" -> collectibles.add(new Flag(p));
 
+                        case "BOMB" -> collectibles.add(new Bomb(p));
+
                         default -> throw new IOException("Unknown collectible type: " + type);
                     }
                 }

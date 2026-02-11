@@ -44,20 +44,6 @@ public interface WorldController {
     List<Door> getDoors();
 
     /**
-     * Get Level from Model (Controller - Model).
-     *
-     * @return currentLevel.
-     */
-    int getLevel();
-
-    /**
-     * Get Score from Model (Controller - Model).
-     *
-     * @return the current score.
-     */
-    int getScore();
-
-    /**
      * Get Direction from Model (Controller - Model).
      *
      * @return the current direction of the snake.
