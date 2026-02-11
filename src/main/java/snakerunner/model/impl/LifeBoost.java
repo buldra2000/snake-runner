@@ -11,6 +11,7 @@ import snakerunner.model.GameModel;
  * that, when consumed, grants the player an extra life.
  */
 public final class LifeBoost implements Collectible {
+    private static final String LIFE_BOOST_SOUND = "sounds/lifeup.wav";
     private final Point2D<Integer, Integer> position;
 
     /**
@@ -24,8 +25,8 @@ public final class LifeBoost implements Collectible {
 
     @Override
     public void consume(final GameModel model) {
-        AudioPlayer.playSound("lifeup.wav");
-        //model.addLife(); //TODO implementare addLife() in GameModelImpl
+        AudioPlayer.playSound(LIFE_BOOST_SOUND);
+        model.addLife(); 
     }
 
     @Override

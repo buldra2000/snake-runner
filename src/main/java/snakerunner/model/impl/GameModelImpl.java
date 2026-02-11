@@ -228,6 +228,14 @@ public final class GameModelImpl implements GameModel {
         this.lives = 3;
     }
 
+    /**
+     * Add a life to the snake after consuming a mushroom(Life Boost).
+     */
+    @Override
+    public void addLife() {
+        this.lives++;
+    }
+
     private void checkCollisions() {
         final Point2D<Integer, Integer> head = snake.getHead();
         if (snake.isCollidingWithItself()) {

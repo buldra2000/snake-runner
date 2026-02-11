@@ -118,4 +118,9 @@ public interface GameModel {
      * Resets the game state to the initial conditions. This method is called when the game is over to prepare for a new game.
      */
     void resetState();
+
+    /**
+     * Add a life to the snake after consuming a mushroom(Life Boost).
+     */
+    void addLife();
 }

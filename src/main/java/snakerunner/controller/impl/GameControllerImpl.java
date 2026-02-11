@@ -157,6 +157,7 @@ public final class GameControllerImpl implements GameController, KeyListener {
 
         if (gameModel.isGameOver() || timeLeft == 0) {
             gameLoopTimer.stop();
+            currentLevel = INITIAL_LEVEL;
             state = StateGame.GAME_OVER;
             mainFrame.lose();
             return;
