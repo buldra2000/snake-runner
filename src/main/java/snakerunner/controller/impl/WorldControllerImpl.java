@@ -52,16 +52,6 @@ public final class WorldControllerImpl implements WorldController {
     }
 
     @Override
-    public int getLevel() {
-        return 0;
-    }
-
-    @Override
-    public int getScore() {
-        return gameModel.getScore();
-    }
-
-    @Override
     public Direction getDirection() {
         return gameModel.getSnake().getCurrentDirection();
     }

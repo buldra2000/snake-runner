@@ -22,13 +22,14 @@ import snakerunner.model.SnakeSegment;
 public final class GameBoardPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    private static final int CELL = 20;
+    private static final int CELL = 15;
     private final WorldController worldController;
     private Image foodImage;
     private Image keyImage;
     private Image obstacleImage;
     private Image mushroomImage;
     private Image flagImage;
+    private Image bombImage;
     private Image clockImage;
     private Image snakeHeadUp; 
     private Image snakeHeadDown;
@@ -80,6 +81,7 @@ public final class GameBoardPanel extends JPanel {
         doorOpen = loadImage("images/door_open.png");
         foodImage = loadImage("images/food.png");
         clockImage = loadImage("images/clock.png");
+        bombImage = loadImage("images/bomb.png");
         keyImage = loadImage("images/key.png");
         flagImage = loadImage("images/flag.png");
         mushroomImage = loadImage("images/mushroom.png");
@@ -287,6 +289,7 @@ public final class GameBoardPanel extends JPanel {
             case KEY -> g.drawImage(keyImage, x, y, CELL, CELL, this);
             case LIFE_BOOST -> g.drawImage(mushroomImage, x, y, CELL, CELL, this);
             case FLAG -> g.drawImage(flagImage, x, y, CELL, CELL, this);
+            case BOMB -> g.drawImage(bombImage, x, y, CELL, CELL, this);
             default -> {
                 g.setColor(Color.YELLOW);
                 g.fillOval(x, y, CELL, CELL);
