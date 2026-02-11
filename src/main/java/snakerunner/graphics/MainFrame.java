@@ -33,13 +33,19 @@ public interface MainFrame {
     void showGame();
 
     /**
+     * Show TUtorial
+     */
+    void showTutorial();
+
+    /**
      * Set Panel.
      * 
      * @param menuPanel Set MenuPanel.
      * @param gamePanel Set GamePanel.
      * @param optionPanel Set OptionPanel.
+     * @param tutorialPanel Set TutorialPanel.
      */
-    void setPanels(BasePanel menuPanel, BasePanel gamePanel, BasePanel optionPanel);
+    void setPanels(BasePanel menuPanel, BasePanel gamePanel, BasePanel optionPanel, BasePanel tutorialPanel);
 
     /**
      * Show OptionPanel.

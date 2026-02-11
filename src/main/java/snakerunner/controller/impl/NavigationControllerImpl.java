@@ -21,6 +21,7 @@ public final class NavigationControllerImpl implements NavigationController, Key
     private GameController gameController;
     private BasePanel menuPanel;
     private BasePanel optionPanel;
+    private BasePanel tutorialPanel;
 
     /**
      * Constructor for NavigationControllerImpl.
@@ -37,6 +38,7 @@ public final class NavigationControllerImpl implements NavigationController, Key
     public void init() {
         menuPanel = PanelFactory.createMenuPanel(this);
         optionPanel = PanelFactory.createOptionPanel(this);
+        tutorialPanel = PanelFactory.createTutorialPanel(this);
 
         mainFrame.addKeyListener(this);
 
@@ -46,7 +48,7 @@ public final class NavigationControllerImpl implements NavigationController, Key
         frame.requestFocusInWindow();
     }
 
-        mainFrame.setPanels(menuPanel, null, optionPanel);
+        mainFrame.setPanels(menuPanel, null, optionPanel, tutorialPanel);
         mainFrame.showMenu();
         mainFrame.display();
     }
@@ -83,7 +85,7 @@ public final class NavigationControllerImpl implements NavigationController, Key
             gameController.setHUD(gp.getTimerView(), gp.getScoreView(), gp.getLevelView(), gp.getLifeView());
         }
 
-        mainFrame.setPanels(menuPanel, gamePanel, optionPanel);
+        mainFrame.setPanels(menuPanel, gamePanel, optionPanel, tutorialPanel);
         mainFrame.showGame();
         gameController.start();
 
@@ -97,6 +99,11 @@ public final class NavigationControllerImpl implements NavigationController, Key
     @Override
     public void onBackMenu() {
         mainFrame.showMenu();
+    }
+
+    @Override
+    public void onTutorial() {
+        mainFrame.showTutorial();
     }
 
     @Override

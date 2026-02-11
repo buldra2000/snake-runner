@@ -18,10 +18,12 @@ public final class OptionPanel extends AbstractBasePanel {
     private static final long serialVersionUID = 1L;
     private static final String APPLY = "Apply";
     private static final String BACK = "Back";
+    private static final String TUTORIAL = "Show Tutorial";
     private static final String SOUND = "Sound On / Off";
     private final NavigationController navigationController;
     private final JButton apply;
     private final JButton back;
+    private final JButton tutorial;
     private final JCheckBox checkbox;
     private final JLabel label;
 
@@ -40,8 +42,10 @@ public final class OptionPanel extends AbstractBasePanel {
         checkbox.setAlignmentX(CENTER_ALIGNMENT);
         setSoundPanel();
         add(Box.createVerticalGlue());
+        tutorial = createButton(TUTORIAL);
         apply = createButton(APPLY);
         back = createButton(BACK);
+        add(tutorial);
         add(apply);
         add(back);
         this.addActionListeners();
@@ -64,6 +68,7 @@ public final class OptionPanel extends AbstractBasePanel {
 
     @Override
     public void addActionListeners() {
+        tutorial.addActionListener(e -> navigationController.onTutorial());
         apply.addActionListener(e -> navigationController.onBackMenu());
         back.addActionListener(e -> navigationController.onBackMenu());
         checkbox.addActionListener(e -> {

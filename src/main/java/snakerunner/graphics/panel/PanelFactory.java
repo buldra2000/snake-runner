@@ -41,6 +41,10 @@ public final class PanelFactory {
         return new OptionPanel(navigationController);
     }
 
+    public static BasePanel createTutorialPanel(final NavigationController navigationController) {
+        return new TutorialPanel(navigationController);
+    }
+
     /**
      * Create new GameBoardPanel.
      * 

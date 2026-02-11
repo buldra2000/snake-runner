@@ -27,6 +27,11 @@ public interface NavigationController {
     void startGame();
 
     /**
+     * Show Tutorial
+     */
+    void onTutorial();
+
+    /**
      * Terminate the application.
      */
     void exit();

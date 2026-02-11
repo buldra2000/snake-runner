@@ -8,7 +8,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AudioPlayerTest {
 
-    private static final String EAT = "eat.wav";
+    private static final String EAT = "sounds/eat.wav";
+    private static final String FLAG = "sounds/flag.wav";
+    private static final String KEY = "sounds/key.wav";
     private static final String FILE_NOT_EXIST = "file_not_exist.wav";
 
     /* Test getters return true/false */
@@ -38,8 +40,8 @@ class AudioPlayerTest {
     void playSoundMultipleTest(){
         assertDoesNotThrow(() -> {
             AudioPlayer.playSound(EAT);
-            AudioPlayer.playSound(EAT);
-            AudioPlayer.playSound(EAT);
+            AudioPlayer.playSound(FLAG);
+            AudioPlayer.playSound(KEY);
         });
     }
 

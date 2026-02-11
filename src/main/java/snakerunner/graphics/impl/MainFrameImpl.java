@@ -24,6 +24,7 @@ public final class MainFrameImpl extends JFrame implements MainFrame {
     private BasePanel menuPanel;
     private BasePanel gamePanel;
     private BasePanel optionPanel;
+    private BasePanel tutorialPanel;
 
     /**
      * Constructor of MainFrameImpl.
@@ -41,8 +42,9 @@ public final class MainFrameImpl extends JFrame implements MainFrame {
     }
 
     @Override
-    public void setPanels(final BasePanel menu, final BasePanel game, final BasePanel option) {
+    public void setPanels(final BasePanel menu, final BasePanel game, final BasePanel option, final BasePanel tutorial) {
        this.menuPanel = menu;
+       this.tutorialPanel = tutorial;
        this.gamePanel = game;
        this.optionPanel = option;
     }
@@ -60,6 +62,13 @@ public final class MainFrameImpl extends JFrame implements MainFrame {
     @Override
     public void showMenu() {
         setContentPane((JPanel) menuPanel);
+        revalidate();
+        repaint();
+    }
+
+    @Override
+    public void showTutorial() {
+        setContentPane((JPanel) tutorialPanel);
         revalidate();
         repaint();
     }
