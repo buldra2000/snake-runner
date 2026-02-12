@@ -47,7 +47,7 @@ class CollisionTest {
         gameModel.loadLevel(levelData); /* Empty level */
 
     assertEquals(3, gameModel.getLives());
-    Point2D<Integer, Integer> startPos = gameModel.getSnake().getHead();
+    final Point2D<Integer, Integer> startPos = gameModel.getSnake().getHead();
 
     /* First collision */
     gameModel.update();
