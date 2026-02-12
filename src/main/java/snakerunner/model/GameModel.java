@@ -25,8 +25,7 @@ public interface GameModel {
     /**
      * Loads a level from the given data.
      *
-     * @param data The LevelData object 
-     * containing the level information to be loaded.
+     * @param data The LevelData object containing the level information to be loaded.
      */
     void loadLevel(LevelData data);
 
