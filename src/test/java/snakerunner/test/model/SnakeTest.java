@@ -1,7 +1,8 @@
 package snakerunner.test.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
+
 import snakerunner.commons.Point2D;
 import snakerunner.model.Direction;
 import snakerunner.model.Snake;

@@ -1,10 +1,11 @@
 package snakerunner.test.audio;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import snakerunner.audio.AudioPlayer;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class AudioPlayerTest {
 
@@ -17,8 +18,7 @@ class AudioPlayerTest {
     @Test
     void soundEnabledGettersTest() {
         AudioPlayer.setSoundEnabled(true);
-        assertTrue(AudioPlayer.isSoundEnable());
-        
+        assertTrue(AudioPlayer.isSoundEnable()); 
         AudioPlayer.setSoundEnabled(false);
         assertFalse(AudioPlayer.isSoundEnable());
     }
@@ -31,13 +31,13 @@ class AudioPlayerTest {
 
     /* Test AudioPlayer playSound() Exeption */
     @Test
-    void playSoundExeptionTest(){
+    void playSoundExeptionTest() {
         assertDoesNotThrow(() -> AudioPlayer.playSound(FILE_NOT_EXIST));
     }
 
     /* Test AudioPlayer playSound() multiple sound */
     @Test
-    void playSoundMultipleTest(){
+    void playSoundMultipleTest() {
         assertDoesNotThrow(() -> {
             AudioPlayer.playSound(EAT);
             AudioPlayer.playSound(FLAG);
