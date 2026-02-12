@@ -1,8 +1,6 @@
 package snakerunner.core;
 
-public class GameConfiguration {
-
-    private GameConfiguration() {}
+public final class GameConfiguration {
 
     public static final int INITIAL_SPEED = 150;
     public static final int SLOW_EFFECT_DURATION = 50;
@@ -26,5 +24,7 @@ public class GameConfiguration {
     public static final Integer VALUE_STRUT = 20;
     public static final Integer SIZE_DESC = 15;
     public static final Integer SIZE_COMM = 20;
+
+    private GameConfiguration() {}
 
 }
