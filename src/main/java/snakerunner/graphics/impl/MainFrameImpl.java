@@ -111,10 +111,5 @@ public final class MainFrameImpl extends JFrame implements MainFrame {
     public void refresh() {
         this.repaint();
     }
-    /*
-    @Override
-    public void addKeyListener(final KeyListener l) {
-    super.addKeyListener(l);
-    }
-    */
+    
 }

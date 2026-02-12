@@ -52,7 +52,7 @@ public final class GameControllerImpl implements GameController {
 
     //Creation components
 
-    //KeyListener
+    
     @Override
     public void moveUp() {
     if (state == StateGame.RUNNING) {
