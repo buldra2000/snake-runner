@@ -27,7 +27,6 @@ public final class GameModelImpl implements GameModel {
     private static final int INITIAL_LIVES = 3;
     private static final Point2D<Integer, Integer> STARTING_POSITION = new Point2D<>(2, 10);
     private boolean isGameOver;
-
     private Level currentLevel;
     private Snake snake;
     private List<Collectible> collectibles;

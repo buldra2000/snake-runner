@@ -14,8 +14,18 @@ public interface Grid {
      */
     boolean isInsideGrid(Point2D<Integer, Integer> position);
 
+    /**
+     * Get thew width of the grid.
+     * 
+     * @return the width of the grid.
+     */
     int getWidth();
 
+    /**
+     * Get thew height of the grid.
+     * 
+     * @return the height of the grid.
+     */
     int getHeight();
 }
 

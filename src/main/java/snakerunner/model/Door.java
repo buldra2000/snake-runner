@@ -33,8 +33,7 @@ public class Door extends Obstacle {
     /**
      * setting the door to open or closed.
      * 
-     * @param open the new state of the door, 
-     * true for open and false for closed.
+     * @param open the new state of the door, true for open and false for closed.
      */
     public void setOpen(final boolean open) {
         this.open = open;
