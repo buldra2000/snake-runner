@@ -16,7 +16,7 @@ public final class TestLevels {
 
     /**
      * Creates a simple level.
-    *
+     *
      * @return a LevelData object representing the simple level.
      */
     public static LevelData simpleLevel() {
