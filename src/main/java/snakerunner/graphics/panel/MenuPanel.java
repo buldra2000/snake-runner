@@ -2,6 +2,7 @@ package snakerunner.graphics.panel;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+
 import snakerunner.controller.NavigationController;
 import snakerunner.graphics.impl.AbstractBasePanel;
 
@@ -14,7 +15,7 @@ public final class MenuPanel extends AbstractBasePanel {
     private static final String START = "Start";
     private static final String OPTION = "Option";
     private static final String EXIT = "Exit";
-    private final NavigationController navigationController;
+    private transient NavigationController navigationController;
     private final JButton start;
     private final JButton option;
     private final JButton exit;
