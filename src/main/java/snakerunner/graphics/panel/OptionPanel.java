@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import snakerunner.audio.AudioPlayer;
 import snakerunner.controller.NavigationController;
 import snakerunner.graphics.impl.AbstractBasePanel;
@@ -20,7 +21,7 @@ public final class OptionPanel extends AbstractBasePanel {
     private static final String BACK = "Back";
     private static final String TUTORIAL = "Show Tutorial";
     private static final String SOUND = "Sound On / Off";
-    private final NavigationController navigationController;
+    private final transient NavigationController navigationController;
     private final JButton apply;
     private final JButton back;
     private final JButton tutorial;

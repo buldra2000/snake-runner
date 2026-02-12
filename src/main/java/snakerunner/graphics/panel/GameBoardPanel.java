@@ -6,8 +6,10 @@ import java.awt.Image;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
+
 import snakerunner.commons.Point2D;
 import snakerunner.controller.WorldController;
 import snakerunner.model.Collectible;
@@ -23,25 +25,25 @@ public final class GameBoardPanel extends JPanel {
 
     private static final long serialVersionUID = 1L;
     private final WorldController worldController;
-    private Image foodImage;
-    private Image keyImage;
-    private Image obstacleImage;
-    private Image mushroomImage;
-    private Image flagImage;
-    private Image bombImage;
-    private Image clockImage;
-    private Image snakeHeadUp; 
-    private Image snakeHeadDown;
-    private Image snakeHeadLeft;
-    private Image snakeHeadRight;
-    private Image snakeTailUp;
-    private Image snakeTailDown;
-    private Image snakeTailLeft;
-    private Image snakeTailRight;
-    private Image snakeBodyVertical;
-    private Image snakeBodyHorizontal;
-    private Image doorClose;
-    private Image doorOpen;
+    private transient Image foodImage;
+    private transient Image keyImage;
+    private transient Image obstacleImage;
+    private transient Image mushroomImage;
+    private transient Image flagImage;
+    private transient Image bombImage;
+    private transient Image clockImage;
+    private transient Image snakeHeadUp; 
+    private transient Image snakeHeadDown;
+    private transient Image snakeHeadLeft;
+    private transient Image snakeHeadRight;
+    private transient Image snakeTailUp;
+    private transient Image snakeTailDown;
+    private transient Image snakeTailLeft;
+    private transient Image snakeTailRight;
+    private transient Image snakeBodyVertical;
+    private transient Image snakeBodyHorizontal;
+    private transient Image doorClose;
+    private transient Image doorOpen;
 
     /**
      * Constructor for GameBoardPanel.
